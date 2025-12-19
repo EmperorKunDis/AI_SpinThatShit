@@ -5,7 +5,9 @@
       "Bash(for file in /Users/martinsvanda/Downloads/NovyDownloadProsinec/SpinThatShit/i18n/locales/*.json)",
       "Bash(do python3 -m json.tool \"$file\")",
       "Bash(/dev/null)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

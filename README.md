@@ -1,5 +1,10 @@
 # 🔄 SpinThatShit
 
+---
+**🌍 Read this in your language:**
+[English](docs/i18n/README.en.md) | [Čeština](docs/i18n/README.cs.md) | [Español](docs/i18n/README.es.md) | [简体中文](docs/i18n/README.zh-CN.md) | [Deutsch](docs/i18n/README.de.md) | [Français](docs/i18n/README.fr.md) | [日本語](docs/i18n/README.ja.md) | [한국어](docs/i18n/README.ko.md) | [Русский](docs/i18n/README.ru.md) | [Português](docs/i18n/README.pt.md) | [हिन्दी](docs/i18n/README.hi.md) | [العربية](docs/i18n/README.ar.md) | [বাংলা](docs/i18n/README.bn.md) | [Italiano](docs/i18n/README.it.md) | [Türkçe](docs/i18n/README.tr.md) | [Tiếng Việt](docs/i18n/README.vi.md) | [Polski](docs/i18n/README.pl.md) | [Українська](docs/i18n/README.uk.md) | [Nederlands](docs/i18n/README.nl.md) | [ไทย](docs/i18n/README.th.md) | [Română](docs/i18n/README.ro.md) | [Ελληνικά](docs/i18n/README.el.md) | [Magyar](docs/i18n/README.hu.md) | [Svenska](docs/i18n/README.sv.md) | [Bahasa Indonesia](docs/i18n/README.id.md) | [فارسی](docs/i18n/README.fa.md) | [עברית](docs/i18n/README.he.md) | [Bahasa Melayu](docs/i18n/README.ms.md) | [Norsk](docs/i18n/README.no.md) | [Slovenčina](docs/i18n/README.sk.md) | [Suomi](docs/i18n/README.fi.md) | [Dansk](docs/i18n/README.da.md)
+---
+
 **Autonomní AI Agent Orchestrace pro Vývoj Software**
 
 Systém pro řízení více AI agentů (Claude Code CLI), kteří spolupracují na vývoji software. Každý agent má specifickou roli a systém zajišťuje kontinuitu práce i při dosažení context limitu.
