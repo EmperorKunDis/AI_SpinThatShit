@@ -1,109 +1,106 @@
 # 🔄 SpinThatShit
 
----
-**🌍 Read this in your language:**
-[English](docs/i18n/README.en.md) | [Čeština](docs/i18n/README.cs.md) | [Español](docs/i18n/README.es.md) | [简体中文](docs/i18n/README.zh-CN.md) | [Deutsch](docs/i18n/README.de.md) | [Français](docs/i18n/README.fr.md) | [日本語](docs/i18n/README.ja.md) | [한국어](docs/i18n/README.ko.md) | [Русский](docs/i18n/README.ru.md) | [Português](docs/i18n/README.pt.md) | [हिन्दी](docs/i18n/README.hi.md) | [العربية](docs/i18n/README.ar.md) | [বাংলা](docs/i18n/README.bn.md) | [Italiano](docs/i18n/README.it.md) | [Türkçe](docs/i18n/README.tr.md) | [Tiếng Việt](docs/i18n/README.vi.md) | [Polski](docs/i18n/README.pl.md) | [Українська](docs/i18n/README.uk.md) | [Nederlands](docs/i18n/README.nl.md) | [ไทย](docs/i18n/README.th.md) | [Română](docs/i18n/README.ro.md) | [Ελληνικά](docs/i18n/README.el.md) | [Magyar](docs/i18n/README.hu.md) | [Svenska](docs/i18n/README.sv.md) | [Bahasa Indonesia](docs/i18n/README.id.md) | [فارسی](docs/i18n/README.fa.md) | [עברית](docs/i18n/README.he.md) | [Bahasa Melayu](docs/i18n/README.ms.md) | [Norsk](docs/i18n/README.no.md) | [Slovenčina](docs/i18n/README.sk.md) | [Suomi](docs/i18n/README.fi.md) | [Dansk](docs/i18n/README.da.md)
----
+**Autonomous AI Agent Orchestration for Software Development**
 
-**Autonomní AI Agent Orchestrace pro Vývoj Software**
+A system for managing multiple AI agents (Claude Code CLI) that collaborate on software development. Each agent has a specific role and the system ensures work continuity even when context limits are reached.
 
-Systém pro řízení více AI agentů (Claude Code CLI), kteří spolupracují na vývoji software. Každý agent má specifickou roli a systém zajišťuje kontinuitu práce i při dosažení context limitu.
+> **🌍 Available in 32 languages:** [English](docs/i18n/README.en.md) • [Čeština](docs/i18n/README.cs.md) • [Español](docs/i18n/README.es.md) • [简体中文](docs/i18n/README.zh-CN.md) • [Deutsch](docs/i18n/README.de.md) • [Français](docs/i18n/README.fr.md) • [日本語](docs/i18n/README.ja.md) • [한국어](docs/i18n/README.ko.md) • [Русский](docs/i18n/README.ru.md) • [Português](docs/i18n/README.pt.md) • [हिन्दी](docs/i18n/README.hi.md) • [العربية](docs/i18n/README.ar.md) • [বাংলা](docs/i18n/README.bn.md) • [Italiano](docs/i18n/README.it.md) • [Türkçe](docs/i18n/README.tr.md) • [Tiếng Việt](docs/i18n/README.vi.md) • [Polski](docs/i18n/README.pl.md) • [Українська](docs/i18n/README.uk.md) • [Nederlands](docs/i18n/README.nl.md) • [ไทย](docs/i18n/README.th.md) • [Română](docs/i18n/README.ro.md) • [Ελληνικά](docs/i18n/README.el.md) • [Magyar](docs/i18n/README.hu.md) • [Svenska](docs/i18n/README.sv.md) • [Bahasa Indonesia](docs/i18n/README.id.md) • [فارسی](docs/i18n/README.fa.md) • [עברית](docs/i18n/README.he.md) • [Bahasa Melayu](docs/i18n/README.ms.md) • [Norsk](docs/i18n/README.no.md) • [Slovenčina](docs/i18n/README.sk.md) • [Suomi](docs/i18n/README.fi.md) • [Dansk](docs/i18n/README.da.md)
 
 ---
 
-## 🚀 Rychlý Start
+## 🚀 Quick Start
 
 ```bash
-# Instalace
+# Installation
 chmod +x install.sh
 ./install.sh
 
-# Spuštění
+# Run
 spinthatshit
-# nebo kratší
+# or shorter
 sts
 ```
 
 ---
 
-## 📋 Funkce
+## 📋 Features
 
 ### Multi-Agent Workflow
-- **Planner** - Analyzuje dokumentaci, vytváří plán
-- **Designer** - Navrhuje UI/UX komponenty
-- **Engineer** - Staví infrastrukturu a architekturu
-- **Developer** - Implementuje features
-- **Reviewer** - Kontroluje kvalitu kódu
-- **Tester** - Testuje funkcionalitu
-- **Supervisor** - Hledá kolize a problémy
-- **Evolver** - Vylepšuje samotný systém
+- **Planner** - Analyzes documentation, creates plan
+- **Designer** - Designs UI/UX components
+- **Engineer** - Builds infrastructure and architecture
+- **Developer** - Implements features
+- **Reviewer** - Reviews code quality
+- **Tester** - Tests functionality
+- **Supervisor** - Detects conflicts and issues
+- **Evolver** - Improves the system itself
 
 ### Context Management
-- Automatické sledování využití kontextu
-- Handoff při dosažení 50% limitu
-- Kontinuita práce mezi agenty
+- Automatic context usage tracking
+- Handoff at 50% limit threshold
+- Work continuity between agents
 
 ### Git Integration
-- Automatický commit po každé změně
-- Tagging fází
-- Auto-push na GitHub
+- Automatic commit after every change
+- Phase tagging
+- Auto-push to GitHub
 
 ### Self-Evolution
-- Systém se učí z chyb
-- Automaticky vylepšuje prompty
-- Přidává nové kontroly
+- System learns from mistakes
+- Automatically improves prompts
+- Adds new checks
 
 ---
 
-## 📁 Struktura Projektu
+## 📁 Project Structure
 
-Po spuštění se ve vývojové složce vytvoří:
+After running, the following structure is created in the development folder:
 
 ```
 your-project/
 ├── .spinstate/
-│   ├── state.json          # Stav orchestrace
-│   ├── journal.md          # Deník všech agentů
-│   ├── plan.md             # Plán projektu
-│   ├── checklist.md        # Seznam úkolů
-│   ├── architecture.md     # Architektura
-│   ├── handoff.md          # Předávací poznámky
-│   ├── status.txt          # Aktuální status
-│   ├── review.md           # Výsledky review
-│   ├── test_report.md      # Výsledky testů
-│   └── logs/               # Logy všech agentů
-├── CLAUDE.md               # Instrukce pro Claude
-└── ... (váš kód)
+│   ├── state.json          # Orchestration state
+│   ├── journal.md          # Journal of all agents
+│   ├── plan.md             # Project plan
+│   ├── checklist.md        # Task list
+│   ├── architecture.md     # Architecture
+│   ├── handoff.md          # Handoff notes
+│   ├── status.txt          # Current status
+│   ├── review.md           # Review results
+│   ├── test_report.md      # Test results
+│   └── logs/               # Logs of all agents
+├── CLAUDE.md               # Instructions for Claude
+└── ... (your code)
 ```
 
 ---
 
-## 🎯 Použití
+## 🎯 Usage
 
-### Interaktivní Režim
+### Interactive Mode
 ```bash
 spinthatshit
 ```
 
-Systém se vás zeptá na:
-1. Cestu k dokumentaci
-2. Cestu k vývojové složce
+The system will ask you for:
+1. Path to documentation
+2. Path to development folder
 
-### S Parametry
+### With Parameters
 ```bash
 spinthatshit --docs ./docs --dev ./src
 ```
 
-### Pokračování
+### Resume
 ```bash
 spinthatshit --resume
 ```
 
 ---
 
-## ⚙️ Konfigurace
+## ⚙️ Configuration
 
-Konfigurační soubor: `~/.spinthatshit/config.json`
+Configuration file: `~/.spinthatshit/config.json`
 
 ```json
 {
@@ -123,111 +120,111 @@ Konfigurační soubor: `~/.spinthatshit/config.json`
 
 ---
 
-## 🔧 Požadavky
+## 🔧 Requirements
 
 - **Python 3.8+**
 - **Claude Code CLI** (`npm install -g @anthropic-ai/claude-code`)
 - **Git**
-- **macOS nebo Linux**
+- **macOS or Linux**
 
 ---
 
-## 📖 Jak To Funguje
+## 📖 How It Works
 
-### 1. Inicializace
-Systém načte dokumentaci a existující kód, vytvoří plán.
+### 1. Initialization
+The system loads documentation and existing code, creates a plan.
 
-### 2. Fázový Běh
-Každý agent běží postupně:
-1. Načte kontext z journal.md
-2. Provede svou práci
-3. Commituje změny
-4. Zapisuje do checklistu
-5. Předá dalšímu agentovi
+### 2. Phase Execution
+Each agent runs sequentially:
+1. Loads context from journal.md
+2. Performs its work
+3. Commits changes
+4. Updates the checklist
+5. Hands off to the next agent
 
 ### 3. Context Handoff
-Když agent dosáhne 50% kontextu:
-1. Zapíše stav do handoff.md
-2. Commitne vše
-3. Ukončí se
-4. Nový agent pokračuje
+When an agent reaches 50% context:
+1. Writes state to handoff.md
+2. Commits everything
+3. Terminates
+4. New agent continues
 
 ### 4. Recovery
-Při selhání:
-1. Supervisor analyzuje problém
-2. Orchestrator upraví pravidla
-3. Agent se restartuje
+On failure:
+1. Supervisor analyzes the problem
+2. Orchestrator adjusts rules
+3. Agent restarts
 
-### 5. Evoluce
-Po dokončení projektu:
-1. Evolver analyzuje co fungovalo
-2. Upraví prompty agentů
-3. Přidá nové kontroly
+### 5. Evolution
+After project completion:
+1. Evolver analyzes what worked
+2. Adjusts agent prompts
+3. Adds new checks
 
 ---
 
-## 🎬 Příklad Běhu
+## 🎬 Example Run
 
 ```
 [14:32:01] [PHASE] ========================================
-[14:32:01] [PHASE] FÁZE: PLANNER
+[14:32:01] [PHASE] PHASE: PLANNER
 [14:32:01] [PHASE] ========================================
 
 [14:32:05] [AGENT] [planner] Reading documentation...
 [14:32:12] [AGENT] [planner] Created plan.md
 [14:32:18] [AGENT] [planner] Created checklist.md
 [14:32:22] [SUCCESS] Commit: [planner] Initial planning complete
-[14:32:24] [SUCCESS] Agent planner dokončen (kontext: ~15%)
+[14:32:24] [SUCCESS] Agent planner completed (context: ~15%)
 
 [14:32:25] [PHASE] ========================================
-[14:32:25] [PHASE] FÁZE: DEVELOPER
+[14:32:25] [PHASE] PHASE: DEVELOPER
 [14:32:25] [PHASE] ========================================
 
 [14:32:30] [AGENT] [developer] Starting backend API...
-[14:35:45] [WARNING] Kontext na 52% - předávám dalšímu agentovi
-[14:35:48] [INFO] Restart agenta developer (pokus 1/3)
+[14:35:45] [WARNING] Context at 52% - handing off to next agent
+[14:35:48] [INFO] Restarting developer agent (attempt 1/3)
 ...
 ```
 
 ---
 
-## 🛑 Zastavení
+## 🛑 Stopping
 
-- **Ctrl+C** - Bezpečné zastavení, stav se uloží
-- Použijte `--resume` pro pokračování
+- **Ctrl+C** - Safe stop, state is saved
+- Use `--resume` to continue
 
 ---
 
-## 🐛 Řešení Problémů
+## 🐛 Troubleshooting
 
-### Agent se zasekl
+### Agent is stuck
 ```bash
-# Podívejte se na logy
+# Check the logs
 cat your-project/.spinstate/logs/agent_*.log
 ```
 
-### Chyby v kódu
-Systém má auto-recovery, ale můžete:
-1. Upravit `.spinstate/checklist.md`
-2. Přidat poznámku do `.spinstate/journal.md`
-3. Spustit znovu
+### Code errors
+The system has auto-recovery, but you can:
+1. Edit `.spinstate/checklist.md`
+2. Add a note to `.spinstate/journal.md`
+3. Run again
 
-### Context přetéká
-- Zvyšte `context_limit_percent` v config.json
-- Rozdělte projekt na menší fáze
-
----
-
-## 📝 Tipy
-
-1. **Dokumentace je klíč** - Čím lepší docs, tím lepší výsledek
-2. **Malé projekty první** - Naučte se systém na jednoduchém projektu
-3. **Nekontrolujte každý krok** - Nechte agenty pracovat
-4. **Věřte handoffům** - Systém si pamatuje kontext
+### Context overflow
+- Increase `context_limit_percent` in config.json
+- Split the project into smaller phases
 
 ---
 
-## 🗑️ Odinstalace
+## 📝 Tips
+
+1. **Documentation is key** - Better docs mean better results
+2. **Small projects first** - Learn the system on a simple project
+3. **Don't micromanage** - Let the agents work
+4. **Trust handoffs** - The system remembers context
+
+---
+
+## 🗑️ Uninstallation
 
 ```bash
 ~/.spinthatshit/uninstall.sh
@@ -235,17 +232,17 @@ Systém má auto-recovery, ale můžete:
 
 ---
 
-## 📜 Licence
+## 📜 License
 
-MIT License - Volně k použití
+MIT License - Free to use
 
 ---
 
-## 🤝 Vytvořeno pro
+## 🤝 Created for
 
-Martin @ Praut s.r.o.  
+Martin @ Praut s.r.o.
 AI Integration & Business Automation
 
 ---
 
-*"Necháváme AI pracovat, zatímco si dáváme dortík."* 🍰
+*"We let AI work while we eat cake."* 🍰
