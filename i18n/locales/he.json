@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "תזמור סוכני AI אוטונומי לפיתוח תוכנה",
+    "version": "גרסה {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - מתזמר סוכני AI v{version}",
+    "message": "ברוכים הבאים! בואו נגדיר את הפרויקט שלך.",
+    "language_select": "בחר את השפה שלך / Select your language / Vyberte jazyk",
+    "language_prompt": "הזן קוד שפה (לדוגמה: en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "נתיב לתיעוד (או 'new' ליצירה)",
+    "docs_new_path": "הזן נתיב לתיקיית תיעוד חדשה",
+    "docs_confirm_create": "ליצור תיקייה '{path}'? [Y/n]",
+    "docs_created": "תיקייה נוצרה: {path}",
+    "docs_found": "תיעוד נמצא: {path}",
+    "docs_not_folder": "הנתיב שצוין אינו תיקייה",
+    "dev_prompt": "נתיב לתיקיית פיתוח (או 'new' ליצירה)",
+    "dev_new_path": "הזן נתיב לתיקיית פיתוח חדשה",
+    "dev_confirm_create": "ליצור תיקייה '{path}'? [Y/n]",
+    "dev_created": "תיקייה נוצרה: {path}",
+    "dev_found": "תיקיית פיתוח נמצאה: {path}",
+    "dev_not_folder": "הנתיב שצוין אינו תיקייה",
+    "folder_not_exist": "התיקייה אינה קיימת. ליצור אותה? [Y/n]",
+    "summary_title": "סיכום תצורה",
+    "summary_docs": "תיעוד",
+    "summary_dev": "פיתוח",
+    "summary_doc_files": "קבצים בתיעוד",
+    "summary_dev_files": "קבצים בפיתוח",
+    "confirm_start": "להתחיל תזמור? [Y/n]",
+    "cancelled": "בוטל על ידי המשתמש."
+  },
+  "orchestrator": {
+    "initialized": "מתזמר אותחל",
+    "workflow_start": "מתחיל זרימת עבודה מלאה של פיתוח",
+    "workflow_complete": "זרימת עבודה הושלמה",
+    "workflow_stopped": "זרימת עבודה נעצרה בשלב: {phase}",
+    "resume_from": "ממשיך משלב: {phase}",
+    "final_supervision": "פיקוח סופי",
+    "evolution": "אבולוציה של מערכת",
+    "stopped_by_user": "נעצר על ידי המשתמש (Ctrl+C)",
+    "state_saved": "מצב נשמר. השתמש ב--resume כדי להמשיך.",
+    "critical_error": "שגיאה קריטית: {error}"
+  },
+  "agent": {
+    "starting": "מתחיל סוכן: {role}",
+    "completed": "סוכן {role} הושלם (הקשר: ~{percent}%)",
+    "timeout": "סוכן {role} נגמר הזמן לאחר {minutes} דקות",
+    "failed": "סוכן נכשל: {issue}",
+    "recommendation": "המלצה: {fix}",
+    "unclear_state": "סוכן {role} הסתיים ללא מצב ברור",
+    "retry": "מנסה לתקן ולהפעיל מחדש...",
+    "max_retries": "הגיע למספר המרבי של ניסיונות עבור {role}",
+    "context_limit": "הקשר ב-{percent}% - מעביר לסוכן הבא",
+    "restart": "מפעיל מחדש את סוכן {role} (ניסיון {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "מאגר Git אותחל",
+    "commit": "Commit: {message}",
+    "commit_failed": "Commit נכשל: {error}",
+    "tag_created": "תג '{tag}' נוצר ונדחף",
+    "tag_created_no_push": "תג '{tag}' נוצר (דחיפה נכשלה - אולי אין remote)",
+    "push_success": "שינויים נדחפו ל-GitHub",
+    "push_failed": "דחיפה נכשלה: {error}"
+  },
+  "phases": {
+    "planner": "מתכנן",
+    "designer": "מעצב",
+    "engineer": "מהנדס",
+    "developer": "מפתח",
+    "reviewer": "סוקר",
+    "tester": "בודק",
+    "supervisor": "מפקח",
+    "evolver": "מפתח"
+  },
+  "status": {
+    "info": "מידע",
+    "success": "הצלחה",
+    "warning": "אזהרה",
+    "error": "שגיאה",
+    "agent": "סוכן",
+    "phase": "שלב"
+  }
+}

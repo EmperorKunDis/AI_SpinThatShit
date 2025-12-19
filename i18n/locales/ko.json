@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "소프트웨어 개발을 위한 자율형 AI 에이전트 오케스트레이션",
+    "version": "버전 {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - AI 에이전트 오케스트레이터 v{version}",
+    "message": "환영합니다! 프로젝트를 설정해 보겠습니다.",
+    "language_select": "언어 선택 / Select your language / Vyberte jazyk",
+    "language_prompt": "언어 코드를 입력하세요 (예: en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "문서 경로 (또는 생성하려면 'new')",
+    "docs_new_path": "새 문서 폴더의 경로를 입력하세요",
+    "docs_confirm_create": "폴더 '{path}'를 생성하시겠습니까? [Y/n]",
+    "docs_created": "폴더 생성됨: {path}",
+    "docs_found": "문서를 찾았습니다: {path}",
+    "docs_not_folder": "지정된 경로는 폴더가 아닙니다",
+    "dev_prompt": "개발 폴더 경로 (또는 생성하려면 'new')",
+    "dev_new_path": "새 개발 폴더의 경로를 입력하세요",
+    "dev_confirm_create": "폴더 '{path}'를 생성하시겠습니까? [Y/n]",
+    "dev_created": "폴더 생성됨: {path}",
+    "dev_found": "개발 폴더를 찾았습니다: {path}",
+    "dev_not_folder": "지정된 경로는 폴더가 아닙니다",
+    "folder_not_exist": "폴더가 존재하지 않습니다. 생성하시겠습니까? [Y/n]",
+    "summary_title": "구성 요약",
+    "summary_docs": "문서",
+    "summary_dev": "개발",
+    "summary_doc_files": "문서의 파일",
+    "summary_dev_files": "개발의 파일",
+    "confirm_start": "오케스트레이션을 시작하시겠습니까? [Y/n]",
+    "cancelled": "사용자에 의해 취소되었습니다."
+  },
+  "orchestrator": {
+    "initialized": "오케스트레이터가 초기화되었습니다",
+    "workflow_start": "전체 개발 워크플로우 시작",
+    "workflow_complete": "워크플로우 완료",
+    "workflow_stopped": "워크플로우가 단계에서 중지됨: {phase}",
+    "resume_from": "단계에서 재개: {phase}",
+    "final_supervision": "최종 감독",
+    "evolution": "시스템 진화",
+    "stopped_by_user": "사용자에 의해 중지됨 (Ctrl+C)",
+    "state_saved": "상태가 저장되었습니다. 계속하려면 --resume을 사용하세요.",
+    "critical_error": "치명적 오류: {error}"
+  },
+  "agent": {
+    "starting": "에이전트 시작 중: {role}",
+    "completed": "에이전트 {role} 완료 (컨텍스트: ~{percent}%)",
+    "timeout": "에이전트 {role}이(가) {minutes}분 후 타임아웃됨",
+    "failed": "에이전트 실패: {issue}",
+    "recommendation": "권장 사항: {fix}",
+    "unclear_state": "에이전트 {role}이(가) 명확한 상태 없이 종료됨",
+    "retry": "수정 및 재시작 시도 중...",
+    "max_retries": "{role}의 최대 재시도 횟수에 도달함",
+    "context_limit": "컨텍스트가 {percent}%에 도달 - 다음 에이전트로 전달",
+    "restart": "에이전트 {role} 재시작 중 (시도 {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Git 저장소가 초기화되었습니다",
+    "commit": "커밋: {message}",
+    "commit_failed": "커밋 실패: {error}",
+    "tag_created": "태그 '{tag}'이(가) 생성되고 푸시됨",
+    "tag_created_no_push": "태그 '{tag}'이(가) 생성됨 (푸시 실패 - 원격이 없을 수 있음)",
+    "push_success": "변경 사항이 GitHub에 푸시됨",
+    "push_failed": "푸시 실패: {error}"
+  },
+  "phases": {
+    "planner": "계획자",
+    "designer": "설계자",
+    "engineer": "엔지니어",
+    "developer": "개발자",
+    "reviewer": "검토자",
+    "tester": "테스터",
+    "supervisor": "감독자",
+    "evolver": "진화자"
+  },
+  "status": {
+    "info": "정보",
+    "success": "성공",
+    "warning": "경고",
+    "error": "오류",
+    "agent": "에이전트",
+    "phase": "단계"
+  }
+}

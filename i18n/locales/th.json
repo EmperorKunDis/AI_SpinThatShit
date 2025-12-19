@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "การควบคุมเอเจนต์ AI อัตโนมัติสำหรับการพัฒนาซอฟต์แวร์",
+    "version": "เวอร์ชัน {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - ตัวควบคุมเอเจนต์ AI v{version}",
+    "message": "ยินดีต้อนรับ! มาตั้งค่าโปรเจกต์ของคุณกันเถอะ",
+    "language_select": "เลือกภาษาของคุณ / Select your language / Vyberte jazyk",
+    "language_prompt": "ป้อนรหัสภาษา (เช่น: en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "เส้นทางไปยังเอกสาร (หรือ 'new' เพื่อสร้าง)",
+    "docs_new_path": "ป้อนเส้นทางสำหรับโฟลเดอร์เอกสารใหม่",
+    "docs_confirm_create": "สร้างโฟลเดอร์ '{path}'? [Y/n]",
+    "docs_created": "สร้างโฟลเดอร์แล้ว: {path}",
+    "docs_found": "พบเอกสาร: {path}",
+    "docs_not_folder": "เส้นทางที่ระบุไม่ใช่โฟลเดอร์",
+    "dev_prompt": "เส้นทางไปยังโฟลเดอร์การพัฒนา (หรือ 'new' เพื่อสร้าง)",
+    "dev_new_path": "ป้อนเส้นทางสำหรับโฟลเดอร์การพัฒนาใหม่",
+    "dev_confirm_create": "สร้างโฟลเดอร์ '{path}'? [Y/n]",
+    "dev_created": "สร้างโฟลเดอร์แล้ว: {path}",
+    "dev_found": "พบโฟลเดอร์การพัฒนา: {path}",
+    "dev_not_folder": "เส้นทางที่ระบุไม่ใช่โฟลเดอร์",
+    "folder_not_exist": "โฟลเดอร์ไม่มีอยู่ สร้างมันหรือไม่? [Y/n]",
+    "summary_title": "สรุปการกำหนดค่า",
+    "summary_docs": "เอกสาร",
+    "summary_dev": "การพัฒนา",
+    "summary_doc_files": "ไฟล์ในเอกสาร",
+    "summary_dev_files": "ไฟล์ในการพัฒนา",
+    "confirm_start": "เริ่มการควบคุมหรือไม่? [Y/n]",
+    "cancelled": "ยกเลิกโดยผู้ใช้"
+  },
+  "orchestrator": {
+    "initialized": "เริ่มต้นตัวควบคุมแล้ว",
+    "workflow_start": "เริ่มต้นเวิร์กโฟลว์การพัฒนาที่สมบูรณ์",
+    "workflow_complete": "เวิร์กโฟลว์เสร็จสมบูรณ์",
+    "workflow_stopped": "เวิร์กโฟลว์หยุดที่ระยะ: {phase}",
+    "resume_from": "เริ่มต้นใหม่จากระยะ: {phase}",
+    "final_supervision": "การกำกับดูแลขั้นสุดท้าย",
+    "evolution": "การวิวัฒนาการของระบบ",
+    "stopped_by_user": "หยุดโดยผู้ใช้ (Ctrl+C)",
+    "state_saved": "บันทึกสถานะแล้ว ใช้ --resume เพื่อดำเนินการต่อ",
+    "critical_error": "ข้อผิดพลาดร้ายแรง: {error}"
+  },
+  "agent": {
+    "starting": "กำลังเริ่มต้นเอเจนต์: {role}",
+    "completed": "เอเจนต์ {role} เสร็จสมบูรณ์ (บริบท: ~{percent}%)",
+    "timeout": "เอเจนต์ {role} หมดเวลาหลังจาก {minutes} นาที",
+    "failed": "เอเจนต์ล้มเหลว: {issue}",
+    "recommendation": "คำแนะนำ: {fix}",
+    "unclear_state": "เอเจนต์ {role} สิ้นสุดโดยไม่มีสถานะที่ชัดเจน",
+    "retry": "กำลังพยายามแก้ไขและเริ่มต้นใหม่...",
+    "max_retries": "ถึงจำนวนครั้งสูงสุดในการลองใหม่สำหรับ {role}",
+    "context_limit": "บริบทที่ {percent}% - ส่งต่อไปยังเอเจนต์ถัดไป",
+    "restart": "กำลังเริ่มต้นเอเจนต์ {role} ใหม่ (ครั้งที่ {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "เริ่มต้นที่เก็บ Git แล้ว",
+    "commit": "คอมมิต: {message}",
+    "commit_failed": "คอมมิตล้มเหลว: {error}",
+    "tag_created": "สร้างและพุชแท็ก '{tag}' แล้ว",
+    "tag_created_no_push": "สร้างแท็ก '{tag}' แล้ว (การพุชล้มเหลว - อาจไม่มี remote)",
+    "push_success": "พุชการเปลี่ยนแปลงไปยัง GitHub แล้ว",
+    "push_failed": "การพุชล้มเหลว: {error}"
+  },
+  "phases": {
+    "planner": "ผู้วางแผน",
+    "designer": "นักออกแบบ",
+    "engineer": "วิศวกร",
+    "developer": "นักพัฒนา",
+    "reviewer": "ผู้ตรวจสอบ",
+    "tester": "ผู้ทดสอบ",
+    "supervisor": "ผู้ควบคุม",
+    "evolver": "ผู้พัฒนาต่อยอด"
+  },
+  "status": {
+    "info": "ข้อมูล",
+    "success": "สำเร็จ",
+    "warning": "คำเตือน",
+    "error": "ข้อผิดพลาด",
+    "agent": "เอเจนต์",
+    "phase": "ระยะ"
+  }
+}

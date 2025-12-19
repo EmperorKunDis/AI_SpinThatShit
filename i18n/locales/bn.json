@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "সফটওয়্যার ডেভেলপমেন্টের জন্য স্বায়ত্তশাসিত AI এজেন্ট সমন্বয়",
+    "version": "সংস্করণ {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - AI এজেন্ট অর্কেস্ট্রেটর v{version}",
+    "message": "স্বাগতম! আসুন আপনার প্রকল্প সেট আপ করি।",
+    "language_select": "আপনার ভাষা নির্বাচন করুন / Select your language / Vyberte jazyk",
+    "language_prompt": "ভাষা কোড লিখুন (যেমন: en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "ডকুমেন্টেশনের পথ (অথবা তৈরি করতে 'new')",
+    "docs_new_path": "নতুন ডকুমেন্টেশন ফোল্ডারের জন্য পথ লিখুন",
+    "docs_confirm_create": "ফোল্ডার '{path}' তৈরি করবেন? [Y/n]",
+    "docs_created": "ফোল্ডার তৈরি হয়েছে: {path}",
+    "docs_found": "ডকুমেন্টেশন পাওয়া গেছে: {path}",
+    "docs_not_folder": "নির্দিষ্ট পথটি একটি ফোল্ডার নয়",
+    "dev_prompt": "ডেভেলপমেন্ট ফোল্ডারের পথ (অথবা তৈরি করতে 'new')",
+    "dev_new_path": "নতুন ডেভেলপমেন্ট ফোল্ডারের জন্য পথ লিখুন",
+    "dev_confirm_create": "ফোল্ডার '{path}' তৈরি করবেন? [Y/n]",
+    "dev_created": "ফোল্ডার তৈরি হয়েছে: {path}",
+    "dev_found": "ডেভেলপমেন্ট ফোল্ডার পাওয়া গেছে: {path}",
+    "dev_not_folder": "নির্দিষ্ট পথটি একটি ফোল্ডার নয়",
+    "folder_not_exist": "ফোল্ডারটি বিদ্যমান নেই। এটি তৈরি করবেন? [Y/n]",
+    "summary_title": "কনফিগারেশন সারাংশ",
+    "summary_docs": "ডকুমেন্টেশন",
+    "summary_dev": "ডেভেলপমেন্ট",
+    "summary_doc_files": "ডকুমেন্টেশনে ফাইল",
+    "summary_dev_files": "ডেভেলপমেন্টে ফাইল",
+    "confirm_start": "সমন্বয় শুরু করবেন? [Y/n]",
+    "cancelled": "ব্যবহারকারী দ্বারা বাতিল করা হয়েছে।"
+  },
+  "orchestrator": {
+    "initialized": "অর্কেস্ট্রেটর শুরু করা হয়েছে",
+    "workflow_start": "সম্পূর্ণ ডেভেলপমেন্ট ওয়ার্কফ্লো শুরু হচ্ছে",
+    "workflow_complete": "ওয়ার্কফ্লো সম্পূর্ণ হয়েছে",
+    "workflow_stopped": "ওয়ার্কফ্লো পর্যায়ে থেমে গেছে: {phase}",
+    "resume_from": "পর্যায় থেকে পুনরায় শুরু হচ্ছে: {phase}",
+    "final_supervision": "চূড়ান্ত তত্ত্বাবধান",
+    "evolution": "সিস্টেম বিবর্তন",
+    "stopped_by_user": "ব্যবহারকারী দ্বারা বন্ধ করা হয়েছে (Ctrl+C)",
+    "state_saved": "অবস্থা সংরক্ষিত হয়েছে। চালিয়ে যেতে --resume ব্যবহার করুন।",
+    "critical_error": "গুরুতর ত্রুটি: {error}"
+  },
+  "agent": {
+    "starting": "এজেন্ট শুরু হচ্ছে: {role}",
+    "completed": "এজেন্ট {role} সম্পূর্ণ হয়েছে (প্রসঙ্গ: ~{percent}%)",
+    "timeout": "এজেন্ট {role} {minutes} মিনিট পরে টাইমআউট",
+    "failed": "এজেন্ট ব্যর্থ হয়েছে: {issue}",
+    "recommendation": "সুপারিশ: {fix}",
+    "unclear_state": "এজেন্ট {role} স্পষ্ট অবস্থা ছাড়াই শেষ হয়েছে",
+    "retry": "মেরামত এবং পুনরায় শুরু করার চেষ্টা করা হচ্ছে...",
+    "max_retries": "{role} এর জন্য সর্বোচ্চ পুনঃপ্রচেষ্টায় পৌঁছেছে",
+    "context_limit": "প্রসঙ্গ {percent}% এ - পরবর্তী এজেন্টের কাছে হস্তান্তর করা হচ্ছে",
+    "restart": "এজেন্ট {role} পুনরায় শুরু হচ্ছে (প্রচেষ্টা {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Git রিপোজিটরি শুরু করা হয়েছে",
+    "commit": "কমিট: {message}",
+    "commit_failed": "কমিট ব্যর্থ হয়েছে: {error}",
+    "tag_created": "ট্যাগ '{tag}' তৈরি এবং পুশ করা হয়েছে",
+    "tag_created_no_push": "ট্যাগ '{tag}' তৈরি হয়েছে (পুশ ব্যর্থ হয়েছে - সম্ভবত কোনো রিমোট নেই)",
+    "push_success": "পরিবর্তনগুলি GitHub-এ পুশ করা হয়েছে",
+    "push_failed": "পুশ ব্যর্থ হয়েছে: {error}"
+  },
+  "phases": {
+    "planner": "পরিকল্পনাকারী",
+    "designer": "ডিজাইনার",
+    "engineer": "প্রকৌশলী",
+    "developer": "ডেভেলপার",
+    "reviewer": "পর্যালোচক",
+    "tester": "পরীক্ষক",
+    "supervisor": "তত্ত্বাবধায়ক",
+    "evolver": "বিবর্তক"
+  },
+  "status": {
+    "info": "তথ্য",
+    "success": "সফলতা",
+    "warning": "সতর্কতা",
+    "error": "ত্রুটি",
+    "agent": "এজেন্ট",
+    "phase": "পর্যায়"
+  }
+}

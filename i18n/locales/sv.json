@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "Autonom AI-agentorkestration för mjukvaruutveckling",
+    "version": "Version {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - AI-agentorkestrator v{version}",
+    "message": "Välkommen! Låt oss ställa in ditt projekt.",
+    "language_select": "Välj ditt språk / Select your language / Vyberte jazyk",
+    "language_prompt": "Ange språkkod (t.ex. en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "Sökväg till dokumentation (eller 'new' för att skapa)",
+    "docs_new_path": "Ange sökväg för ny dokumentationsmapp",
+    "docs_confirm_create": "Skapa mapp '{path}'? [Y/n]",
+    "docs_created": "Mapp skapad: {path}",
+    "docs_found": "Dokumentation hittad: {path}",
+    "docs_not_folder": "Angiven sökväg är inte en mapp",
+    "dev_prompt": "Sökväg till utvecklingsmapp (eller 'new' för att skapa)",
+    "dev_new_path": "Ange sökväg för ny utvecklingsmapp",
+    "dev_confirm_create": "Skapa mapp '{path}'? [Y/n]",
+    "dev_created": "Mapp skapad: {path}",
+    "dev_found": "Utvecklingsmapp hittad: {path}",
+    "dev_not_folder": "Angiven sökväg är inte en mapp",
+    "folder_not_exist": "Mappen finns inte. Skapa den? [Y/n]",
+    "summary_title": "Konfigurationssammanfattning",
+    "summary_docs": "Dokumentation",
+    "summary_dev": "Utveckling",
+    "summary_doc_files": "Filer i dokumentation",
+    "summary_dev_files": "Filer i utveckling",
+    "confirm_start": "Starta orkestration? [Y/n]",
+    "cancelled": "Avbruten av användare."
+  },
+  "orchestrator": {
+    "initialized": "Orkestrator initialiserad",
+    "workflow_start": "STARTAR KOMPLETT UTVECKLINGSARBETSFLÖDE",
+    "workflow_complete": "ARBETSFLÖDE SLUTFÖRT",
+    "workflow_stopped": "Arbetsflöde stoppat i fas: {phase}",
+    "resume_from": "Återupptar från fas: {phase}",
+    "final_supervision": "SLUTLIG ÖVERVAKNING",
+    "evolution": "SYSTEMUTVECKLING",
+    "stopped_by_user": "Stoppad av användare (Ctrl+C)",
+    "state_saved": "Tillstånd sparat. Använd --resume för att fortsätta.",
+    "critical_error": "Kritiskt fel: {error}"
+  },
+  "agent": {
+    "starting": "Startar agent: {role}",
+    "completed": "Agent {role} slutförd (kontext: ~{percent}%)",
+    "timeout": "Agent {role} timeout efter {minutes} minuter",
+    "failed": "Agent misslyckades: {issue}",
+    "recommendation": "Rekommendation: {fix}",
+    "unclear_state": "Agent {role} avslutades utan tydligt tillstånd",
+    "retry": "Försöker åtgärda och starta om...",
+    "max_retries": "Max antal försök nådda för {role}",
+    "context_limit": "Kontext vid {percent}% - överlämnar till nästa agent",
+    "restart": "Startar om agent {role} (försök {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Git-repository initialiserat",
+    "commit": "Commit: {message}",
+    "commit_failed": "Commit misslyckades: {error}",
+    "tag_created": "Tagg '{tag}' skapad och pushad",
+    "tag_created_no_push": "Tagg '{tag}' skapad (push misslyckades - möjligen ingen remote)",
+    "push_success": "Ändringar pushade till GitHub",
+    "push_failed": "Push misslyckades: {error}"
+  },
+  "phases": {
+    "planner": "Planerare",
+    "designer": "Designer",
+    "engineer": "Ingenjör",
+    "developer": "Utvecklare",
+    "reviewer": "Granskare",
+    "tester": "Testare",
+    "supervisor": "Övervakare",
+    "evolver": "Utvecklare"
+  },
+  "status": {
+    "info": "INFO",
+    "success": "FRAMGÅNG",
+    "warning": "VARNING",
+    "error": "FEL",
+    "agent": "AGENT",
+    "phase": "FAS"
+  }
+}

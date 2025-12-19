@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "Orchestrare Autonomă de Agenți AI pentru Dezvoltare Software",
+    "version": "Versiune {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - Orchestrator de Agenți AI v{version}",
+    "message": "Bun venit! Să configurăm proiectul tău.",
+    "language_select": "Selectează limba / Select your language / Vyberte jazyk",
+    "language_prompt": "Introduceți codul limbii (ex: en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "Calea către documentație (sau 'new' pentru a crea)",
+    "docs_new_path": "Introduceți calea pentru noul dosar de documentație",
+    "docs_confirm_create": "Creare dosar '{path}'? [Y/n]",
+    "docs_created": "Dosar creat: {path}",
+    "docs_found": "Documentație găsită: {path}",
+    "docs_not_folder": "Calea specificată nu este un dosar",
+    "dev_prompt": "Calea către dosarul de dezvoltare (sau 'new' pentru a crea)",
+    "dev_new_path": "Introduceți calea pentru noul dosar de dezvoltare",
+    "dev_confirm_create": "Creare dosar '{path}'? [Y/n]",
+    "dev_created": "Dosar creat: {path}",
+    "dev_found": "Dosar de dezvoltare găsit: {path}",
+    "dev_not_folder": "Calea specificată nu este un dosar",
+    "folder_not_exist": "Dosarul nu există. Să-l creăm? [Y/n]",
+    "summary_title": "Rezumat Configurare",
+    "summary_docs": "Documentație",
+    "summary_dev": "Dezvoltare",
+    "summary_doc_files": "Fișiere în documentație",
+    "summary_dev_files": "Fișiere în dezvoltare",
+    "confirm_start": "Pornire orchestrare? [Y/n]",
+    "cancelled": "Anulat de utilizator."
+  },
+  "orchestrator": {
+    "initialized": "Orchestrator inițializat",
+    "workflow_start": "PORNIRE FLUX DE LUCRU COMPLET DE DEZVOLTARE",
+    "workflow_complete": "FLUX DE LUCRU FINALIZAT",
+    "workflow_stopped": "Flux de lucru oprit în faza: {phase}",
+    "resume_from": "Reluare din faza: {phase}",
+    "final_supervision": "SUPRAVEGHERE FINALĂ",
+    "evolution": "EVOLUȚIE SISTEM",
+    "stopped_by_user": "Oprit de utilizator (Ctrl+C)",
+    "state_saved": "Stare salvată. Folosiți --resume pentru a continua.",
+    "critical_error": "Eroare critică: {error}"
+  },
+  "agent": {
+    "starting": "Pornire agent: {role}",
+    "completed": "Agent {role} finalizat (context: ~{percent}%)",
+    "timeout": "Agent {role} a expirat după {minutes} minute",
+    "failed": "Agent eșuat: {issue}",
+    "recommendation": "Recomandare: {fix}",
+    "unclear_state": "Agentul {role} s-a încheiat fără o stare clară",
+    "retry": "Încercare de remediere și repornire...",
+    "max_retries": "Număr maxim de reîncercări atins pentru {role}",
+    "context_limit": "Context la {percent}% - predare către următorul agent",
+    "restart": "Repornire agent {role} (încercare {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Depozit Git inițializat",
+    "commit": "Commit: {message}",
+    "commit_failed": "Commit eșuat: {error}",
+    "tag_created": "Tag '{tag}' creat și trimis",
+    "tag_created_no_push": "Tag '{tag}' creat (trimitere eșuată - posibil fără remote)",
+    "push_success": "Modificări trimise la GitHub",
+    "push_failed": "Trimitere eșuată: {error}"
+  },
+  "phases": {
+    "planner": "Planificator",
+    "designer": "Designer",
+    "engineer": "Inginer",
+    "developer": "Dezvoltator",
+    "reviewer": "Recenzor",
+    "tester": "Tester",
+    "supervisor": "Supraveghetor",
+    "evolver": "Evoluționist"
+  },
+  "status": {
+    "info": "INFO",
+    "success": "SUCCES",
+    "warning": "AVERTISMENT",
+    "error": "EROARE",
+    "agent": "AGENT",
+    "phase": "FAZĂ"
+  }
+}

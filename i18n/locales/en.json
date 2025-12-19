@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "Autonomous AI Agent Orchestration for Software Development",
+    "version": "Version {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - AI Agent Orchestrator v{version}",
+    "message": "Welcome! Let's set up your project.",
+    "language_select": "Select your language / Vyberte jazyk / 选择语言",
+    "language_prompt": "Enter language code (e.g., en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "Path to documentation (or 'new' to create)",
+    "docs_new_path": "Enter path for new documentation folder",
+    "docs_confirm_create": "Create folder '{path}'? [Y/n]",
+    "docs_created": "Folder created: {path}",
+    "docs_found": "Documentation found: {path}",
+    "docs_not_folder": "Specified path is not a folder",
+    "dev_prompt": "Path to development folder (or 'new' to create)",
+    "dev_new_path": "Enter path for new development folder",
+    "dev_confirm_create": "Create folder '{path}'? [Y/n]",
+    "dev_created": "Folder created: {path}",
+    "dev_found": "Development folder found: {path}",
+    "dev_not_folder": "Specified path is not a folder",
+    "folder_not_exist": "Folder doesn't exist. Create it? [Y/n]",
+    "summary_title": "Configuration Summary",
+    "summary_docs": "Documentation",
+    "summary_dev": "Development",
+    "summary_doc_files": "Files in documentation",
+    "summary_dev_files": "Files in development",
+    "confirm_start": "Start orchestration? [Y/n]",
+    "cancelled": "Cancelled by user."
+  },
+  "orchestrator": {
+    "initialized": "Orchestrator initialized",
+    "workflow_start": "STARTING COMPLETE DEVELOPMENT WORKFLOW",
+    "workflow_complete": "WORKFLOW COMPLETED",
+    "workflow_stopped": "Workflow stopped at phase: {phase}",
+    "resume_from": "Resuming from phase: {phase}",
+    "final_supervision": "FINAL SUPERVISION",
+    "evolution": "SYSTEM EVOLUTION",
+    "stopped_by_user": "Stopped by user (Ctrl+C)",
+    "state_saved": "State saved. Use --resume to continue.",
+    "critical_error": "Critical error: {error}"
+  },
+  "agent": {
+    "starting": "Starting agent: {role}",
+    "completed": "Agent {role} completed (context: ~{percent}%)",
+    "timeout": "Agent {role} timeout after {minutes} minutes",
+    "failed": "Agent failed: {issue}",
+    "recommendation": "Recommendation: {fix}",
+    "unclear_state": "Agent {role} ended without clear state",
+    "retry": "Attempting fix and restart...",
+    "max_retries": "Maximum retries reached for {role}",
+    "context_limit": "Context at {percent}% - handing off to next agent",
+    "restart": "Restarting agent {role} (attempt {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Git repository initialized",
+    "commit": "Commit: {message}",
+    "commit_failed": "Commit failed: {error}",
+    "tag_created": "Tag '{tag}' created and pushed",
+    "tag_created_no_push": "Tag '{tag}' created (push failed - possibly no remote)",
+    "push_success": "Changes pushed to GitHub",
+    "push_failed": "Push failed: {error}"
+  },
+  "phases": {
+    "planner": "Planner",
+    "designer": "Designer",
+    "engineer": "Engineer",
+    "developer": "Developer",
+    "reviewer": "Reviewer",
+    "tester": "Tester",
+    "supervisor": "Supervisor",
+    "evolver": "Evolver"
+  },
+  "status": {
+    "info": "INFO",
+    "success": "SUCCESS",
+    "warning": "WARNING",
+    "error": "ERROR",
+    "agent": "AGENT",
+    "phase": "PHASE"
+  }
+}

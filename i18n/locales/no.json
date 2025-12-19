@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "Autonom AI-agentorkestrering for programvareutvikling",
+    "version": "Versjon {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - AI-agentorkestrator v{version}",
+    "message": "Velkommen! La oss sette opp prosjektet ditt.",
+    "language_select": "Velg språk / Select your language / Vyberte jazyk",
+    "language_prompt": "Skriv inn språkkode (f.eks. en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "Sti til dokumentasjon (eller 'new' for å opprette)",
+    "docs_new_path": "Skriv inn sti for ny dokumentasjonsmappe",
+    "docs_confirm_create": "Opprette mappe '{path}'? [Y/n]",
+    "docs_created": "Mappe opprettet: {path}",
+    "docs_found": "Dokumentasjon funnet: {path}",
+    "docs_not_folder": "Angitt sti er ikke en mappe",
+    "dev_prompt": "Sti til utviklingsmappe (eller 'new' for å opprette)",
+    "dev_new_path": "Skriv inn sti for ny utviklingsmappe",
+    "dev_confirm_create": "Opprette mappe '{path}'? [Y/n]",
+    "dev_created": "Mappe opprettet: {path}",
+    "dev_found": "Utviklingsmappe funnet: {path}",
+    "dev_not_folder": "Angitt sti er ikke en mappe",
+    "folder_not_exist": "Mappen finnes ikke. Opprette den? [Y/n]",
+    "summary_title": "Konfigurasjonssammendrag",
+    "summary_docs": "Dokumentasjon",
+    "summary_dev": "Utvikling",
+    "summary_doc_files": "Filer i dokumentasjon",
+    "summary_dev_files": "Filer i utvikling",
+    "confirm_start": "Starte orkestrering? [Y/n]",
+    "cancelled": "Avbrutt av bruker."
+  },
+  "orchestrator": {
+    "initialized": "Orkestrator initialisert",
+    "workflow_start": "STARTER KOMPLETT UTVIKLINGSARBEIDSFLYT",
+    "workflow_complete": "ARBEIDSFLYT FULLFØRT",
+    "workflow_stopped": "Arbeidsflyt stoppet i fase: {phase}",
+    "resume_from": "Gjenopptar fra fase: {phase}",
+    "final_supervision": "SLUTTOVERVÅKING",
+    "evolution": "SYSTEMUTVIKLING",
+    "stopped_by_user": "Stoppet av bruker (Ctrl+C)",
+    "state_saved": "Tilstand lagret. Bruk --resume for å fortsette.",
+    "critical_error": "Kritisk feil: {error}"
+  },
+  "agent": {
+    "starting": "Starter agent: {role}",
+    "completed": "Agent {role} fullført (kontekst: ~{percent}%)",
+    "timeout": "Agent {role} tidsavbrudd etter {minutes} minutter",
+    "failed": "Agent mislyktes: {issue}",
+    "recommendation": "Anbefaling: {fix}",
+    "unclear_state": "Agent {role} avsluttet uten klar tilstand",
+    "retry": "Prøver å reparere og starte på nytt...",
+    "max_retries": "Maksimalt antall forsøk nådd for {role}",
+    "context_limit": "Kontekst ved {percent}% - overlater til neste agent",
+    "restart": "Starter agent {role} på nytt (forsøk {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Git-repositorium initialisert",
+    "commit": "Commit: {message}",
+    "commit_failed": "Commit mislyktes: {error}",
+    "tag_created": "Tag '{tag}' opprettet og pushet",
+    "tag_created_no_push": "Tag '{tag}' opprettet (push mislyktes - muligens ingen remote)",
+    "push_success": "Endringer pushet til GitHub",
+    "push_failed": "Push mislyktes: {error}"
+  },
+  "phases": {
+    "planner": "Planlegger",
+    "designer": "Designer",
+    "engineer": "Ingeniør",
+    "developer": "Utvikler",
+    "reviewer": "Anmelder",
+    "tester": "Tester",
+    "supervisor": "Veileder",
+    "evolver": "Utvikler"
+  },
+  "status": {
+    "info": "INFO",
+    "success": "SUKSESS",
+    "warning": "ADVARSEL",
+    "error": "FEIL",
+    "agent": "AGENT",
+    "phase": "FASE"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "Αυτόνομη Ενορχήστρωση Πρακτόρων AI για Ανάπτυξη Λογισμικού",
+    "version": "Έκδοση {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - Ενορχηστρωτής Πρακτόρων AI v{version}",
+    "message": "Καλώς ήρθατε! Ας ρυθμίσουμε το έργο σας.",
+    "language_select": "Επιλέξτε γλώσσα / Select your language / Vyberte jazyk",
+    "language_prompt": "Εισάγετε κωδικό γλώσσας (π.χ. en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "Διαδρομή προς την τεκμηρίωση (ή 'new' για δημιουργία)",
+    "docs_new_path": "Εισάγετε διαδρομή για νέο φάκελο τεκμηρίωσης",
+    "docs_confirm_create": "Δημιουργία φακέλου '{path}'; [Y/n]",
+    "docs_created": "Φάκελος δημιουργήθηκε: {path}",
+    "docs_found": "Βρέθηκε τεκμηρίωση: {path}",
+    "docs_not_folder": "Η καθορισμένη διαδρομή δεν είναι φάκελος",
+    "dev_prompt": "Διαδρομή προς τον φάκελο ανάπτυξης (ή 'new' για δημιουργία)",
+    "dev_new_path": "Εισάγετε διαδρομή για νέο φάκελο ανάπτυξης",
+    "dev_confirm_create": "Δημιουργία φακέλου '{path}'; [Y/n]",
+    "dev_created": "Φάκελος δημιουργήθηκε: {path}",
+    "dev_found": "Βρέθηκε φάκελος ανάπτυξης: {path}",
+    "dev_not_folder": "Η καθορισμένη διαδρομή δεν είναι φάκελος",
+    "folder_not_exist": "Ο φάκελος δεν υπάρχει. Να δημιουργηθεί; [Y/n]",
+    "summary_title": "Περίληψη Ρυθμίσεων",
+    "summary_docs": "Τεκμηρίωση",
+    "summary_dev": "Ανάπτυξη",
+    "summary_doc_files": "Αρχεία στην τεκμηρίωση",
+    "summary_dev_files": "Αρχεία στην ανάπτυξη",
+    "confirm_start": "Εκκίνηση ενορχήστρωσης; [Y/n]",
+    "cancelled": "Ακυρώθηκε από τον χρήστη."
+  },
+  "orchestrator": {
+    "initialized": "Ενορχηστρωτής αρχικοποιήθηκε",
+    "workflow_start": "ΕΚΚΙΝΗΣΗ ΠΛΗΡΟΥΣ ΡΟΗΣ ΕΡΓΑΣΙΑΣ ΑΝΑΠΤΥΞΗΣ",
+    "workflow_complete": "ΡΟΗΣ ΕΡΓΑΣΙΑΣ ΟΛΟΚΛΗΡΩΘΗΚΕ",
+    "workflow_stopped": "Ροή εργασίας σταμάτησε στη φάση: {phase}",
+    "resume_from": "Συνέχιση από φάση: {phase}",
+    "final_supervision": "ΤΕΛΙΚΗ ΕΠΟΠΤΕΙΑ",
+    "evolution": "ΕΞΕΛΙΞΗ ΣΥΣΤΗΜΑΤΟΣ",
+    "stopped_by_user": "Σταμάτησε από τον χρήστη (Ctrl+C)",
+    "state_saved": "Κατάσταση αποθηκεύτηκε. Χρησιμοποιήστε --resume για συνέχεια.",
+    "critical_error": "Κρίσιμο σφάλμα: {error}"
+  },
+  "agent": {
+    "starting": "Εκκίνηση πράκτορα: {role}",
+    "completed": "Πράκτορας {role} ολοκληρώθηκε (περιβάλλον: ~{percent}%)",
+    "timeout": "Ο πράκτορας {role} έληξε μετά από {minutes} λεπτά",
+    "failed": "Ο πράκτορας απέτυχε: {issue}",
+    "recommendation": "Σύσταση: {fix}",
+    "unclear_state": "Ο πράκτορας {role} τερματίστηκε χωρίς σαφή κατάσταση",
+    "retry": "Προσπάθεια επιδιόρθωσης και επανεκκίνησης...",
+    "max_retries": "Μέγιστες επαναλήψεις επιτεύχθηκαν για {role}",
+    "context_limit": "Περιβάλλον στο {percent}% - μετάβαση στον επόμενο πράκτορα",
+    "restart": "Επανεκκίνηση πράκτορα {role} (προσπάθεια {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Αποθετήριο Git αρχικοποιήθηκε",
+    "commit": "Commit: {message}",
+    "commit_failed": "Το commit απέτυχε: {error}",
+    "tag_created": "Ετικέτα '{tag}' δημιουργήθηκε και απεστάλη",
+    "tag_created_no_push": "Ετικέτα '{tag}' δημιουργήθηκε (αποστολή απέτυχε - πιθανώς χωρίς remote)",
+    "push_success": "Αλλαγές απεστάλησαν στο GitHub",
+    "push_failed": "Αποστολή απέτυχε: {error}"
+  },
+  "phases": {
+    "planner": "Σχεδιαστής",
+    "designer": "Σχεδιαστής",
+    "engineer": "Μηχανικός",
+    "developer": "Προγραμματιστής",
+    "reviewer": "Κριτικός",
+    "tester": "Δοκιμαστής",
+    "supervisor": "Επόπτης",
+    "evolver": "Εξελικτής"
+  },
+  "status": {
+    "info": "ΠΛΗΡΟΦΟΡΙΕΣ",
+    "success": "ΕΠΙΤΥΧΙΑ",
+    "warning": "ΠΡΟΕΙΔΟΠΟΙΗΣΗ",
+    "error": "ΣΦΑΛΜΑ",
+    "agent": "ΠΡΑΚΤΟΡΑΣ",
+    "phase": "ΦΑΣΗ"
+  }
+}

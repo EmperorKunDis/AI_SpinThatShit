@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "Điều Phối Tác Nhân AI Tự Động cho Phát Triển Phần Mềm",
+    "version": "Phiên bản {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - Trình Điều Phối Tác Nhân AI v{version}",
+    "message": "Chào mừng! Hãy thiết lập dự án của bạn.",
+    "language_select": "Chọn ngôn ngữ của bạn / Select your language / Vyberte jazyk",
+    "language_prompt": "Nhập mã ngôn ngữ (ví dụ: en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "Đường dẫn đến tài liệu (hoặc 'new' để tạo mới)",
+    "docs_new_path": "Nhập đường dẫn cho thư mục tài liệu mới",
+    "docs_confirm_create": "Tạo thư mục '{path}'? [Y/n]",
+    "docs_created": "Đã tạo thư mục: {path}",
+    "docs_found": "Đã tìm thấy tài liệu: {path}",
+    "docs_not_folder": "Đường dẫn được chỉ định không phải là thư mục",
+    "dev_prompt": "Đường dẫn đến thư mục phát triển (hoặc 'new' để tạo mới)",
+    "dev_new_path": "Nhập đường dẫn cho thư mục phát triển mới",
+    "dev_confirm_create": "Tạo thư mục '{path}'? [Y/n]",
+    "dev_created": "Đã tạo thư mục: {path}",
+    "dev_found": "Đã tìm thấy thư mục phát triển: {path}",
+    "dev_not_folder": "Đường dẫn được chỉ định không phải là thư mục",
+    "folder_not_exist": "Thư mục không tồn tại. Tạo nó? [Y/n]",
+    "summary_title": "Tóm Tắt Cấu Hình",
+    "summary_docs": "Tài liệu",
+    "summary_dev": "Phát triển",
+    "summary_doc_files": "Tệp trong tài liệu",
+    "summary_dev_files": "Tệp trong phát triển",
+    "confirm_start": "Bắt đầu điều phối? [Y/n]",
+    "cancelled": "Đã hủy bởi người dùng."
+  },
+  "orchestrator": {
+    "initialized": "Đã khởi tạo trình điều phối",
+    "workflow_start": "BẮT ĐẦU QUY TRÌNH PHÁT TRIỂN HOÀN CHỈNH",
+    "workflow_complete": "QUY TRÌNH ĐÃ HOÀN THÀNH",
+    "workflow_stopped": "Quy trình dừng ở giai đoạn: {phase}",
+    "resume_from": "Tiếp tục từ giai đoạn: {phase}",
+    "final_supervision": "GIÁM SÁT CUỐI CÙNG",
+    "evolution": "TIẾN HÓA HỆ THỐNG",
+    "stopped_by_user": "Dừng bởi người dùng (Ctrl+C)",
+    "state_saved": "Đã lưu trạng thái. Sử dụng --resume để tiếp tục.",
+    "critical_error": "Lỗi nghiêm trọng: {error}"
+  },
+  "agent": {
+    "starting": "Đang khởi động tác nhân: {role}",
+    "completed": "Tác nhân {role} đã hoàn thành (ngữ cảnh: ~{percent}%)",
+    "timeout": "Tác nhân {role} hết thời gian sau {minutes} phút",
+    "failed": "Tác nhân thất bại: {issue}",
+    "recommendation": "Khuyến nghị: {fix}",
+    "unclear_state": "Tác nhân {role} kết thúc mà không có trạng thái rõ ràng",
+    "retry": "Đang thử sửa chữa và khởi động lại...",
+    "max_retries": "Đã đạt số lần thử lại tối đa cho {role}",
+    "context_limit": "Ngữ cảnh ở {percent}% - chuyển cho tác nhân tiếp theo",
+    "restart": "Đang khởi động lại tác nhân {role} (lần thử {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Đã khởi tạo kho Git",
+    "commit": "Commit: {message}",
+    "commit_failed": "Commit thất bại: {error}",
+    "tag_created": "Đã tạo và đẩy thẻ '{tag}'",
+    "tag_created_no_push": "Đã tạo thẻ '{tag}' (đẩy thất bại - có thể không có remote)",
+    "push_success": "Đã đẩy thay đổi lên GitHub",
+    "push_failed": "Đẩy thất bại: {error}"
+  },
+  "phases": {
+    "planner": "Người Lập Kế Hoạch",
+    "designer": "Nhà Thiết Kế",
+    "engineer": "Kỹ Sư",
+    "developer": "Nhà Phát Triển",
+    "reviewer": "Người Đánh Giá",
+    "tester": "Người Kiểm Thử",
+    "supervisor": "Người Giám Sát",
+    "evolver": "Người Tiến Hóa"
+  },
+  "status": {
+    "info": "THÔNG TIN",
+    "success": "THÀNH CÔNG",
+    "warning": "CẢNH BÁO",
+    "error": "LỖI",
+    "agent": "TÁC NHÂN",
+    "phase": "GIAI ĐOẠN"
+  }
+}

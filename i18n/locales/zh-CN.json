@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "软件开发的自主AI代理编排系统",
+    "version": "版本 {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - AI代理编排器 v{version}",
+    "message": "欢迎！让我们设置您的项目。",
+    "language_select": "选择您的语言 / Select your language / Vyberte jazyk",
+    "language_prompt": "输入语言代码（例如：en, cs, zh-CN）"
+  },
+  "setup": {
+    "docs_prompt": "文档路径（或输入'new'创建新文档）",
+    "docs_new_path": "输入新文档文件夹的路径",
+    "docs_confirm_create": "创建文件夹'{path}'？[Y/n]",
+    "docs_created": "文件夹已创建：{path}",
+    "docs_found": "已找到文档：{path}",
+    "docs_not_folder": "指定的路径不是文件夹",
+    "dev_prompt": "开发文件夹路径（或输入'new'创建新文件夹）",
+    "dev_new_path": "输入新开发文件夹的路径",
+    "dev_confirm_create": "创建文件夹'{path}'？[Y/n]",
+    "dev_created": "文件夹已创建：{path}",
+    "dev_found": "已找到开发文件夹：{path}",
+    "dev_not_folder": "指定的路径不是文件夹",
+    "folder_not_exist": "文件夹不存在。是否创建？[Y/n]",
+    "summary_title": "配置摘要",
+    "summary_docs": "文档",
+    "summary_dev": "开发",
+    "summary_doc_files": "文档中的文件",
+    "summary_dev_files": "开发中的文件",
+    "confirm_start": "开始编排？[Y/n]",
+    "cancelled": "用户已取消。"
+  },
+  "orchestrator": {
+    "initialized": "编排器已初始化",
+    "workflow_start": "开始完整的开发工作流程",
+    "workflow_complete": "工作流程已完成",
+    "workflow_stopped": "工作流程在阶段停止：{phase}",
+    "resume_from": "从阶段恢复：{phase}",
+    "final_supervision": "最终监督",
+    "evolution": "系统演进",
+    "stopped_by_user": "用户停止（Ctrl+C）",
+    "state_saved": "状态已保存。使用 --resume 继续。",
+    "critical_error": "严重错误：{error}"
+  },
+  "agent": {
+    "starting": "启动代理：{role}",
+    "completed": "代理 {role} 已完成（上下文：~{percent}%）",
+    "timeout": "代理 {role} 在 {minutes} 分钟后超时",
+    "failed": "代理失败：{issue}",
+    "recommendation": "建议：{fix}",
+    "unclear_state": "代理 {role} 在没有明确状态的情况下结束",
+    "retry": "尝试修复并重启...",
+    "max_retries": "{role} 已达到最大重试次数",
+    "context_limit": "上下文达到 {percent}% - 移交给下一个代理",
+    "restart": "重启代理 {role}（尝试 {current}/{max}）"
+  },
+  "git": {
+    "repo_initialized": "Git仓库已初始化",
+    "commit": "提交：{message}",
+    "commit_failed": "提交失败：{error}",
+    "tag_created": "标签'{tag}'已创建并推送",
+    "tag_created_no_push": "标签'{tag}'已创建（推送失败 - 可能没有远程仓库）",
+    "push_success": "更改已推送到GitHub",
+    "push_failed": "推送失败：{error}"
+  },
+  "phases": {
+    "planner": "规划者",
+    "designer": "设计者",
+    "engineer": "工程师",
+    "developer": "开发者",
+    "reviewer": "审查者",
+    "tester": "测试者",
+    "supervisor": "监督者",
+    "evolver": "演进者"
+  },
+  "status": {
+    "info": "信息",
+    "success": "成功",
+    "warning": "警告",
+    "error": "错误",
+    "agent": "代理",
+    "phase": "阶段"
+  }
+}

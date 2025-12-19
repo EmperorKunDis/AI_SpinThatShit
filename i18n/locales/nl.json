@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "Autonome AI Agent Orkestratie voor Softwareontwikkeling",
+    "version": "Versie {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - AI Agent Orkestrator v{version}",
+    "message": "Welkom! Laten we je project opzetten.",
+    "language_select": "Selecteer je taal / Select your language / Vyberte jazyk",
+    "language_prompt": "Voer taalcode in (bijv. en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "Pad naar documentatie (of 'new' om te maken)",
+    "docs_new_path": "Voer pad in voor nieuwe documentatiemap",
+    "docs_confirm_create": "Map '{path}' maken? [Y/n]",
+    "docs_created": "Map aangemaakt: {path}",
+    "docs_found": "Documentatie gevonden: {path}",
+    "docs_not_folder": "Opgegeven pad is geen map",
+    "dev_prompt": "Pad naar ontwikkelingsmap (of 'new' om te maken)",
+    "dev_new_path": "Voer pad in voor nieuwe ontwikkelingsmap",
+    "dev_confirm_create": "Map '{path}' maken? [Y/n]",
+    "dev_created": "Map aangemaakt: {path}",
+    "dev_found": "Ontwikkelingsmap gevonden: {path}",
+    "dev_not_folder": "Opgegeven pad is geen map",
+    "folder_not_exist": "Map bestaat niet. Aanmaken? [Y/n]",
+    "summary_title": "Configuratieoverzicht",
+    "summary_docs": "Documentatie",
+    "summary_dev": "Ontwikkeling",
+    "summary_doc_files": "Bestanden in documentatie",
+    "summary_dev_files": "Bestanden in ontwikkeling",
+    "confirm_start": "Orkestratie starten? [Y/n]",
+    "cancelled": "Geannuleerd door gebruiker."
+  },
+  "orchestrator": {
+    "initialized": "Orkestrator geïnitialiseerd",
+    "workflow_start": "VOLLEDIGE ONTWIKKELINGSWORKFLOW STARTEN",
+    "workflow_complete": "WORKFLOW VOLTOOID",
+    "workflow_stopped": "Workflow gestopt in fase: {phase}",
+    "resume_from": "Hervatten vanaf fase: {phase}",
+    "final_supervision": "EINDTOEZICHT",
+    "evolution": "SYSTEEMEVOLUTIE",
+    "stopped_by_user": "Gestopt door gebruiker (Ctrl+C)",
+    "state_saved": "Status opgeslagen. Gebruik --resume om door te gaan.",
+    "critical_error": "Kritieke fout: {error}"
+  },
+  "agent": {
+    "starting": "Agent starten: {role}",
+    "completed": "Agent {role} voltooid (context: ~{percent}%)",
+    "timeout": "Agent {role} timeout na {minutes} minuten",
+    "failed": "Agent mislukt: {issue}",
+    "recommendation": "Aanbeveling: {fix}",
+    "unclear_state": "Agent {role} eindigde zonder duidelijke status",
+    "retry": "Poging tot reparatie en herstart...",
+    "max_retries": "Maximale pogingen bereikt voor {role}",
+    "context_limit": "Context op {percent}% - overdragen aan volgende agent",
+    "restart": "Agent {role} herstarten (poging {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Git repository geïnitialiseerd",
+    "commit": "Commit: {message}",
+    "commit_failed": "Commit mislukt: {error}",
+    "tag_created": "Tag '{tag}' aangemaakt en gepusht",
+    "tag_created_no_push": "Tag '{tag}' aangemaakt (push mislukt - mogelijk geen remote)",
+    "push_success": "Wijzigingen gepusht naar GitHub",
+    "push_failed": "Push mislukt: {error}"
+  },
+  "phases": {
+    "planner": "Planner",
+    "designer": "Ontwerper",
+    "engineer": "Ingenieur",
+    "developer": "Ontwikkelaar",
+    "reviewer": "Beoordelaar",
+    "tester": "Tester",
+    "supervisor": "Supervisor",
+    "evolver": "Evolueerder"
+  },
+  "status": {
+    "info": "INFO",
+    "success": "SUCCES",
+    "warning": "WAARSCHUWING",
+    "error": "FOUT",
+    "agent": "AGENT",
+    "phase": "FASE"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "Orquestación Autónoma de Agentes IA para Desarrollo de Software",
+    "version": "Versión {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - Orquestador de Agentes IA v{version}",
+    "message": "¡Bienvenido! Configuremos tu proyecto.",
+    "language_select": "Selecciona tu idioma / Select your language / Vyberte jazyk",
+    "language_prompt": "Ingresa el código de idioma (ej: en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "Ruta a la documentación (o 'new' para crear)",
+    "docs_new_path": "Ingresa la ruta para la nueva carpeta de documentación",
+    "docs_confirm_create": "¿Crear carpeta '{path}'? [Y/n]",
+    "docs_created": "Carpeta creada: {path}",
+    "docs_found": "Documentación encontrada: {path}",
+    "docs_not_folder": "La ruta especificada no es una carpeta",
+    "dev_prompt": "Ruta a la carpeta de desarrollo (o 'new' para crear)",
+    "dev_new_path": "Ingresa la ruta para la nueva carpeta de desarrollo",
+    "dev_confirm_create": "¿Crear carpeta '{path}'? [Y/n]",
+    "dev_created": "Carpeta creada: {path}",
+    "dev_found": "Carpeta de desarrollo encontrada: {path}",
+    "dev_not_folder": "La ruta especificada no es una carpeta",
+    "folder_not_exist": "La carpeta no existe. ¿Crearla? [Y/n]",
+    "summary_title": "Resumen de Configuración",
+    "summary_docs": "Documentación",
+    "summary_dev": "Desarrollo",
+    "summary_doc_files": "Archivos en documentación",
+    "summary_dev_files": "Archivos en desarrollo",
+    "confirm_start": "¿Iniciar orquestación? [Y/n]",
+    "cancelled": "Cancelado por el usuario."
+  },
+  "orchestrator": {
+    "initialized": "Orquestador inicializado",
+    "workflow_start": "INICIANDO FLUJO DE TRABAJO DE DESARROLLO COMPLETO",
+    "workflow_complete": "FLUJO DE TRABAJO COMPLETADO",
+    "workflow_stopped": "Flujo de trabajo detenido en la fase: {phase}",
+    "resume_from": "Reanudando desde la fase: {phase}",
+    "final_supervision": "SUPERVISIÓN FINAL",
+    "evolution": "EVOLUCIÓN DEL SISTEMA",
+    "stopped_by_user": "Detenido por el usuario (Ctrl+C)",
+    "state_saved": "Estado guardado. Usa --resume para continuar.",
+    "critical_error": "Error crítico: {error}"
+  },
+  "agent": {
+    "starting": "Iniciando agente: {role}",
+    "completed": "Agente {role} completado (contexto: ~{percent}%)",
+    "timeout": "Tiempo de espera del agente {role} después de {minutes} minutos",
+    "failed": "Agente falló: {issue}",
+    "recommendation": "Recomendación: {fix}",
+    "unclear_state": "Agente {role} terminó sin estado claro",
+    "retry": "Intentando reparar y reiniciar...",
+    "max_retries": "Máximo de reintentos alcanzado para {role}",
+    "context_limit": "Contexto al {percent}% - pasando al siguiente agente",
+    "restart": "Reiniciando agente {role} (intento {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Repositorio Git inicializado",
+    "commit": "Commit: {message}",
+    "commit_failed": "Commit falló: {error}",
+    "tag_created": "Etiqueta '{tag}' creada y enviada",
+    "tag_created_no_push": "Etiqueta '{tag}' creada (envío falló - posiblemente sin remoto)",
+    "push_success": "Cambios enviados a GitHub",
+    "push_failed": "Envío falló: {error}"
+  },
+  "phases": {
+    "planner": "Planificador",
+    "designer": "Diseñador",
+    "engineer": "Ingeniero",
+    "developer": "Desarrollador",
+    "reviewer": "Revisor",
+    "tester": "Probador",
+    "supervisor": "Supervisor",
+    "evolver": "Evolucionador"
+  },
+  "status": {
+    "info": "INFO",
+    "success": "ÉXITO",
+    "warning": "ADVERTENCIA",
+    "error": "ERROR",
+    "agent": "AGENTE",
+    "phase": "FASE"
+  }
+}

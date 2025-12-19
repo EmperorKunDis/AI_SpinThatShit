@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "Автономная оркестрация ИИ-агентов для разработки программного обеспечения",
+    "version": "Версия {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - Оркестратор ИИ-агентов v{version}",
+    "message": "Добро пожаловать! Давайте настроим ваш проект.",
+    "language_select": "Выберите язык / Select your language / Vyberte jazyk",
+    "language_prompt": "Введите код языка (например: en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "Путь к документации (или 'new' для создания)",
+    "docs_new_path": "Введите путь для новой папки документации",
+    "docs_confirm_create": "Создать папку '{path}'? [Y/n]",
+    "docs_created": "Папка создана: {path}",
+    "docs_found": "Документация найдена: {path}",
+    "docs_not_folder": "Указанный путь не является папкой",
+    "dev_prompt": "Путь к папке разработки (или 'new' для создания)",
+    "dev_new_path": "Введите путь для новой папки разработки",
+    "dev_confirm_create": "Создать папку '{path}'? [Y/n]",
+    "dev_created": "Папка создана: {path}",
+    "dev_found": "Папка разработки найдена: {path}",
+    "dev_not_folder": "Указанный путь не является папкой",
+    "folder_not_exist": "Папка не существует. Создать её? [Y/n]",
+    "summary_title": "Сводка конфигурации",
+    "summary_docs": "Документация",
+    "summary_dev": "Разработка",
+    "summary_doc_files": "Файлов в документации",
+    "summary_dev_files": "Файлов в разработке",
+    "confirm_start": "Начать оркестрацию? [Y/n]",
+    "cancelled": "Отменено пользователем."
+  },
+  "orchestrator": {
+    "initialized": "Оркестратор инициализирован",
+    "workflow_start": "ЗАПУСК ПОЛНОГО РАБОЧЕГО ПРОЦЕССА РАЗРАБОТКИ",
+    "workflow_complete": "РАБОЧИЙ ПРОЦЕСС ЗАВЕРШЁН",
+    "workflow_stopped": "Рабочий процесс остановлен на этапе: {phase}",
+    "resume_from": "Возобновление с этапа: {phase}",
+    "final_supervision": "ФИНАЛЬНЫЙ НАДЗОР",
+    "evolution": "ЭВОЛЮЦИЯ СИСТЕМЫ",
+    "stopped_by_user": "Остановлено пользователем (Ctrl+C)",
+    "state_saved": "Состояние сохранено. Используйте --resume для продолжения.",
+    "critical_error": "Критическая ошибка: {error}"
+  },
+  "agent": {
+    "starting": "Запуск агента: {role}",
+    "completed": "Агент {role} завершён (контекст: ~{percent}%)",
+    "timeout": "Тайм-аут агента {role} через {minutes} минут",
+    "failed": "Агент не справился: {issue}",
+    "recommendation": "Рекомендация: {fix}",
+    "unclear_state": "Агент {role} завершился без чёткого состояния",
+    "retry": "Попытка исправления и перезапуска...",
+    "max_retries": "Достигнуто максимальное количество попыток для {role}",
+    "context_limit": "Контекст на {percent}% - передача следующему агенту",
+    "restart": "Перезапуск агента {role} (попытка {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Репозиторий Git инициализирован",
+    "commit": "Коммит: {message}",
+    "commit_failed": "Коммит не удался: {error}",
+    "tag_created": "Тег '{tag}' создан и отправлен",
+    "tag_created_no_push": "Тег '{tag}' создан (отправка не удалась - возможно, нет удалённого репозитория)",
+    "push_success": "Изменения отправлены в GitHub",
+    "push_failed": "Отправка не удалась: {error}"
+  },
+  "phases": {
+    "planner": "Планировщик",
+    "designer": "Дизайнер",
+    "engineer": "Инженер",
+    "developer": "Разработчик",
+    "reviewer": "Рецензент",
+    "tester": "Тестировщик",
+    "supervisor": "Супервайзер",
+    "evolver": "Эволюционер"
+  },
+  "status": {
+    "info": "ИНФО",
+    "success": "УСПЕХ",
+    "warning": "ПРЕДУПРЕЖДЕНИЕ",
+    "error": "ОШИБКА",
+    "agent": "АГЕНТ",
+    "phase": "ЭТАП"
+  }
+}

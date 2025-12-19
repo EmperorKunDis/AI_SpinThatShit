@@ -4,7 +4,7 @@ SpinThatShit - AI Agent Orchestration System
 =============================================
 Autonomous multi-agent development orchestrator using Claude Code CLI.
 
-Usage: spinthatshit [--config path] [--resume]
+Usage: spinthatshit [--config path] [--resume] [--lang LANG_CODE]
 
 Author: Generated for Martin @ Praut s.r.o.
 """
@@ -24,6 +24,10 @@ from enum import Enum
 import argparse
 import signal
 
+# Add i18n directory to path
+sys.path.insert(0, str(Path(__file__).parent))
+from i18n import get_i18n, SUPPORTED_LANGUAGES
+
 # ============================================================================
 # CONFIGURATION & CONSTANTS
 # ============================================================================
@@ -32,6 +36,69 @@ VERSION = "1.0.0"
 CONTEXT_LIMIT_PERCENT = 50  # Start handoff at this percentage
 MAX_RETRIES = 3
 AGENT_TIMEOUT_MINUTES = 30
+
+# Global i18n instance
+_i18n = None
+
+def get_config_dir() -> Path:
+    """Get or create config directory"""
+    config_dir = Path.home() / ".spinthatshit"
+    config_dir.mkdir(parents=True, exist_ok=True)
+    return config_dir
+
+def load_language_config() -> str:
+    """Load saved language preference or return default"""
+    config_file = get_config_dir() / "language.json"
+    if config_file.exists():
+        try:
+            with open(config_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                return data.get('language', 'en')
+        except:
+            pass
+    return 'en'
+
+def save_language_config(lang_code: str):
+    """Save language preference"""
+    config_file = get_config_dir() / "language.json"
+    with open(config_file, 'w', encoding='utf-8') as f:
+        json.dump({'language': lang_code}, f)
+
+def select_language() -> str:
+    """Interactive language selection"""
+    print(f"\n{Colors.HEADER}{'='*60}{Colors.END}")
+    print(f"{Colors.BOLD}   🌍 Select Your Language / Vyberte Jazyk / 选择语言   {Colors.END}")
+    print(f"{Colors.HEADER}{'='*60}{Colors.END}\n")
+
+    # Display languages in columns
+    langs = list(SUPPORTED_LANGUAGES.items())
+    for i in range(0, len(langs), 3):
+        row = langs[i:i+3]
+        line = "  ".join([f"{code:8} {info['native']:20}" for code, info in row])
+        print(line)
+
+    print(f"\n{Colors.CYAN}Enter language code (default: en): {Colors.END}", end='')
+    choice = input().strip().lower() or 'en'
+
+    if choice in SUPPORTED_LANGUAGES:
+        save_language_config(choice)
+        return choice
+    else:
+        print(f"{Colors.YELLOW}Invalid code. Using English.{Colors.END}")
+        return 'en'
+
+def init_i18n(lang_code: Optional[str] = None) -> None:
+    """Initialize i18n system"""
+    global _i18n
+    if lang_code is None:
+        lang_code = load_language_config()
+    _i18n = get_i18n(lang_code)
+
+def t(key: str, **kwargs) -> str:
+    """Translate key"""
+    if _i18n is None:
+        init_i18n()
+    return _i18n.t(key, **kwargs)
 
 class Colors:
     """Terminal colors for pretty output"""
@@ -137,10 +204,6 @@ def get_timestamp() -> str:
     """Get ISO timestamp"""
     return datetime.datetime.now().isoformat()
 
-def czech(text: str) -> str:
-    """Helper for Czech user-facing text"""
-    return text
-
 # ============================================================================
 # GIT HANDLER
 # ============================================================================
@@ -159,19 +222,19 @@ class GitHandler:
             run_command("git init", cwd=self.repo_path)
             run_command('git config user.email "spinthatshit@local"', cwd=self.repo_path)
             run_command('git config user.name "SpinThatShit Agent"', cwd=self.repo_path)
-            log(czech("Git repozitář inicializován"), "SUCCESS")
+            log(t("git.repo_initialized"), "SUCCESS")
     
     def commit(self, message: str) -> bool:
         """Commit all changes with message"""
         run_command("git add -A", cwd=self.repo_path)
         code, out, err = run_command(f'git commit -m "{message}"', cwd=self.repo_path)
         if code == 0:
-            log(czech(f"Commit: {message[:50]}..."), "SUCCESS")
+            log(t("git.commit", message=message[:50]+"..."), "SUCCESS")
             return True
         elif "nothing to commit" in err or "nothing to commit" in out:
             return True
         else:
-            log(czech(f"Commit selhal: {err}"), "WARNING")
+            log(t("git.commit_failed", error=err), "WARNING")
             return False
     
     def tag(self, tag_name: str, message: str = "") -> bool:
@@ -182,9 +245,9 @@ class GitHandler:
             # Try to push tag
             push_code, _, _ = run_command(f'git push origin "{tag_name}"', cwd=self.repo_path)
             if push_code == 0:
-                log(czech(f"Tag '{tag_name}' vytvořen a pushnut"), "SUCCESS")
+                log(t("git.tag_created", tag=tag_name), "SUCCESS")
             else:
-                log(czech(f"Tag '{tag_name}' vytvořen (push selhal - možná není remote)"), "WARNING")
+                log(t("git.tag_created_no_push", tag=tag_name), "WARNING")
             return True
         return False
     
@@ -192,10 +255,10 @@ class GitHandler:
         """Push to remote"""
         code, _, err = run_command("git push", cwd=self.repo_path)
         if code == 0:
-            log(czech("Změny pushnuty na GitHub"), "SUCCESS")
+            log(t("git.push_success"), "SUCCESS")
             return True
         else:
-            log(czech(f"Push selhal: {err}"), "WARNING")
+            log(t("git.push_failed", error=err), "WARNING")
             return False
     
     def get_recent_commits(self, count: int = 10) -> List[str]:
@@ -689,7 +752,7 @@ class ClaudeRunner:
         Run Claude Code with given prompt
         Returns: (success, output, context_percent)
         """
-        log(czech(f"Spouštím agenta: {role}"), "AGENT")
+        log(t("agent.starting", role=role), "AGENT")
         
         # Create log file for this run
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -718,7 +781,7 @@ class ClaudeRunner:
                 # Check timeout
                 if time.time() - start_time > timeout_minutes * 60:
                     process.kill()
-                    log(czech(f"Agent {role} timeout po {timeout_minutes} minutách"), "ERROR")
+                    log(t("agent.timeout", role=role, minutes=timeout_minutes), "ERROR")
                     return False, "TIMEOUT", 100
                 
                 line = process.stdout.readline()
@@ -750,13 +813,13 @@ class ClaudeRunner:
             
             success = exit_code == 0
             
-            log(czech(f"Agent {role} dokončen (kontext: ~{context_percent}%)"), 
+            log(t("agent.completed", role=role, percent=context_percent),
                 "SUCCESS" if success else "ERROR")
             
             return success, output, context_percent
             
         except Exception as e:
-            log(czech(f"Chyba při spouštění agenta {role}: {str(e)}"), "ERROR")
+            log(t("agent.failed", issue=str(e)), "ERROR")
             return False, str(e), 0
     
     def check_context_limit(self, current_percent: int) -> bool:
@@ -798,9 +861,9 @@ class Orchestrator:
             AgentRole.SUPERVISOR,
         ]
         
-        log(czech(f"Orchestrátor inicializován"), "SUCCESS")
-        log(czech(f"  Dokumentace: {self.docs_path}"), "INFO")
-        log(czech(f"  Vývoj: {self.dev_path}"), "INFO")
+        log(t("orchestrator.initialized"), "SUCCESS")
+        log(f"  Documentation: {self.docs_path}", "INFO")
+        log(f"  Development: {self.dev_path}", "INFO")
     
     def _load_state(self) -> ProjectState:
         """Load or create project state"""
@@ -905,9 +968,9 @@ class Orchestrator:
     
     def run_agent(self, role: AgentRole, retry_count: int = 0) -> bool:
         """Run a single agent with retry logic"""
-        log(czech(f"\n{'='*60}"), "PHASE")
-        log(czech(f"FÁZE: {role.value.upper()}"), "PHASE")
-        log(czech(f"{'='*60}\n"), "PHASE")
+        log(f"\n{'='*60}", "PHASE")
+        log(f"PHASE: {role.value.upper()}", "PHASE")
+        log(f"{'='*60}\n", "PHASE")
         
         self.state.current_agent = role.value
         self._save_state()
@@ -938,7 +1001,7 @@ class Orchestrator:
         
         elif context_percent >= CONTEXT_LIMIT_PERCENT:
             # Context limit reached - handoff
-            log(czech(f"Kontext na {context_percent}% - předávám dalšímu agentovi"), "WARNING")
+            log(t("agent.context_limit", percent=context_percent), "WARNING")
             self.journal.add_handoff(
                 role.value, 
                 role.value,
@@ -949,17 +1012,17 @@ class Orchestrator:
             
             # Run same agent again with fresh context
             if retry_count < MAX_RETRIES:
-                log(czech(f"Restart agenta {role.value} (pokus {retry_count + 1}/{MAX_RETRIES})"), "INFO")
+                log(t("agent.restart", role=role.value, current=retry_count+1, max=MAX_RETRIES), "INFO")
                 return self.run_agent(role, retry_count + 1)
             else:
-                log(czech(f"Maximální počet pokusů dosažen pro {role.value}"), "ERROR")
+                log(t("agent.max_retries", role=role.value), "ERROR")
                 return False
         
         elif not success:
             # Agent failed
             issue, fix = self._analyze_failure(role.value, output)
-            log(czech(f"Agent selhal: {issue}"), "ERROR")
-            log(czech(f"Doporučení: {fix}"), "INFO")
+            log(t("agent.failed", issue=issue), "ERROR")
+            log(t("agent.recommendation", fix=fix), "INFO")
             
             self.journal.add_entry(role.value, "FAILED", f"Selhání: {issue}", f"Fix: {fix}")
             
@@ -967,21 +1030,21 @@ class Orchestrator:
             self.state.known_issues.append(f"{role.value}: {issue}")
             
             if retry_count < MAX_RETRIES:
-                log(czech(f"Pokus o opravu a restart..."), "INFO")
+                log(t("agent.retry"), "INFO")
                 time.sleep(5)  # Brief pause before retry
                 return self.run_agent(role, retry_count + 1)
             else:
                 return False
-        
+
         else:
             # Unclear state - treat as needing continuation
-            log(czech(f"Agent {role.value} skončil bez jasného stavu"), "WARNING")
+            log(t("agent.unclear_state", role=role.value), "WARNING")
             self.git.commit(f"[{role.value}] Partial progress")
             return True  # Continue to next phase
     
     def run_full_workflow(self):
         """Run complete development workflow"""
-        log(czech("\n🚀 SPOUŠTÍM KOMPLETNÍ VÝVOJOVÝ WORKFLOW 🚀\n"), "PHASE")
+        log(f"\n{t('orchestrator.workflow_start')}\n", "PHASE")
         
         # Determine starting point
         start_index = 0
@@ -993,20 +1056,20 @@ class Orchestrator:
                     break
         
         if start_index > 0:
-            log(czech(f"Pokračuji od fáze: {self.workflow[start_index].value}"), "INFO")
-        
+            log(t("orchestrator.resume_from", phase=self.workflow[start_index].value), "INFO")
+
         # Run workflow
         for role in self.workflow[start_index:]:
             if not self.run_agent(role):
-                log(czech(f"Workflow zastaven na fázi: {role.value}"), "ERROR")
+                log(t("orchestrator.workflow_stopped", phase=role.value), "ERROR")
                 return False
-        
+
         # Final supervision
-        log(czech("\n🔍 FINÁLNÍ SUPERVIZE 🔍\n"), "PHASE")
+        log(f"\n{t('orchestrator.final_supervision')}\n", "PHASE")
         self.run_agent(AgentRole.SUPERVISOR)
         
         # Evolution phase
-        log(czech("\n🧬 EVOLUCE SYSTÉMU 🧬\n"), "PHASE")
+        log(f"\n{t('orchestrator.evolution')}\n", "PHASE")
         evolver_prompt = AgentPrompts.evolver(
             self._get_project_context(),
             str(self.docs_path),
@@ -1014,12 +1077,12 @@ class Orchestrator:
             str(Path(__file__).parent)
         )
         self.runner.run_agent("evolver", evolver_prompt)
-        
+
         # Final tag
         self.git.tag(f"release-{datetime.datetime.now().strftime('%Y%m%d')}", "Workflow completed")
         self.git.push()
-        
-        log(czech("\n✅ WORKFLOW DOKONČEN ✅\n"), "SUCCESS")
+
+        log(f"\n{t('orchestrator.workflow_complete')}\n", "SUCCESS")
         return True
 
 # ============================================================================
@@ -1031,84 +1094,84 @@ def interactive_setup() -> tuple[str, str]:
     print(f"\n{Colors.HEADER}{'='*60}{Colors.END}")
     print(f"{Colors.BOLD}   🔄 SpinThatShit - AI Agent Orchestrator v{VERSION} 🔄{Colors.END}")
     print(f"{Colors.HEADER}{'='*60}{Colors.END}\n")
-    
-    print(czech("Vítejte! Pojďme nastavit váš projekt.\n"))
+
+    print(t("welcome.message") + "\n")
     
     # Documentation path
     while True:
-        docs_input = input(czech("📁 Cesta k dokumentaci (nebo 'new' pro vytvoření): ")).strip()
-        
+        docs_input = input(f"📁 {t('setup.docs_prompt')}: ").strip()
+
         if docs_input.lower() == 'new':
-            docs_path = input(czech("   Zadejte cestu pro novou složku dokumentace: ")).strip()
+            docs_path = input(f"   {t('setup.docs_new_path')}: ").strip()
             docs_path = Path(docs_path).expanduser().resolve()
-            create = input(czech(f"   Vytvořit složku '{docs_path}'? [Y/n]: ")).strip().lower()
+            create = input(f"   {t('setup.docs_confirm_create', path=docs_path)} ").strip().lower()
             if create != 'n':
                 docs_path.mkdir(parents=True, exist_ok=True)
                 # Create sample README
                 readme = docs_path / "README.md"
                 readme.write_text("# Project Documentation\n\nAdd your project documentation here.\n")
-                print(czech(f"   ✅ Složka vytvořena: {docs_path}"))
+                print(f"   ✅ {t('setup.docs_created', path=docs_path)}")
                 break
         else:
             docs_path = Path(docs_input).expanduser().resolve()
             if docs_path.exists():
                 if docs_path.is_dir():
-                    print(czech(f"   ✅ Dokumentace nalezena: {docs_path}"))
+                    print(f"   ✅ {t('setup.docs_found', path=docs_path)}")
                     break
                 else:
-                    print(czech("   ❌ Zadaná cesta není složka"))
+                    print(f"   ❌ {t('setup.docs_not_folder')}")
             else:
-                create = input(czech(f"   Složka neexistuje. Vytvořit? [Y/n]: ")).strip().lower()
+                create = input(f"   {t('setup.folder_not_exist')} ").strip().lower()
                 if create != 'n':
                     docs_path.mkdir(parents=True, exist_ok=True)
-                    print(czech(f"   ✅ Složka vytvořena: {docs_path}"))
+                    print(f"   ✅ {t('setup.docs_created', path=docs_path)}")
                     break
     
     print()
     
     # Development path
     while True:
-        dev_input = input(czech("💻 Cesta k vývojové složce (nebo 'new' pro vytvoření): ")).strip()
-        
+        dev_input = input(f"💻 {t('setup.dev_prompt')}: ").strip()
+
         if dev_input.lower() == 'new':
-            dev_path = input(czech("   Zadejte cestu pro novou vývojovou složku: ")).strip()
+            dev_path = input(f"   {t('setup.dev_new_path')}: ").strip()
             dev_path = Path(dev_path).expanduser().resolve()
-            create = input(czech(f"   Vytvořit složku '{dev_path}'? [Y/n]: ")).strip().lower()
+            create = input(f"   {t('setup.dev_confirm_create', path=dev_path)} ").strip().lower()
             if create != 'n':
                 dev_path.mkdir(parents=True, exist_ok=True)
-                print(czech(f"   ✅ Složka vytvořena: {dev_path}"))
+                print(f"   ✅ {t('setup.dev_created', path=dev_path)}")
                 break
         else:
             dev_path = Path(dev_input).expanduser().resolve()
             if dev_path.exists():
                 if dev_path.is_dir():
-                    print(czech(f"   ✅ Vývojová složka nalezena: {dev_path}"))
+                    print(f"   ✅ {t('setup.dev_found', path=dev_path)}")
                     break
                 else:
-                    print(czech("   ❌ Zadaná cesta není složka"))
+                    print(f"   ❌ {t('setup.dev_not_folder')}")
             else:
-                create = input(czech(f"   Složka neexistuje. Vytvořit? [Y/n]: ")).strip().lower()
+                create = input(f"   {t('setup.folder_not_exist')} ").strip().lower()
                 if create != 'n':
                     dev_path.mkdir(parents=True, exist_ok=True)
-                    print(czech(f"   ✅ Složka vytvořena: {dev_path}"))
+                    print(f"   ✅ {t('setup.dev_created', path=dev_path)}")
                     break
     
     print()
     
     # Validation summary
-    print(f"\n{Colors.CYAN}📋 Shrnutí konfigurace:{Colors.END}")
-    print(f"   Dokumentace: {docs_path}")
-    print(f"   Vývoj: {dev_path}")
-    
+    print(f"\n{Colors.CYAN}📋 {t('setup.summary_title')}:{Colors.END}")
+    print(f"   {t('setup.summary_docs')}: {docs_path}")
+    print(f"   {t('setup.summary_dev')}: {dev_path}")
+
     # Count files
     doc_files = list(docs_path.glob('**/*'))
     dev_files = list(dev_path.glob('**/*'))
-    print(f"   Soubory v dokumentaci: {len([f for f in doc_files if f.is_file()])}")
-    print(f"   Soubory ve vývoji: {len([f for f in dev_files if f.is_file()])}")
-    
-    confirm = input(czech(f"\n🚀 Spustit orchestraci? [Y/n]: ")).strip().lower()
+    print(f"   {t('setup.summary_doc_files')}: {len([f for f in doc_files if f.is_file()])}")
+    print(f"   {t('setup.summary_dev_files')}: {len([f for f in dev_files if f.is_file()])}")
+
+    confirm = input(f"\n🚀 {t('setup.confirm_start')} ").strip().lower()
     if confirm == 'n':
-        print(czech("Zrušeno uživatelem."))
+        print(t("setup.cancelled"))
         sys.exit(0)
     
     return str(docs_path), str(dev_path)
@@ -1125,31 +1188,48 @@ def main():
     parser.add_argument('--docs', help='Path to documentation folder')
     parser.add_argument('--dev', help='Path to development folder')
     parser.add_argument('--resume', action='store_true', help='Resume from last state')
+    parser.add_argument('--lang', help='Language code (e.g., en, cs, es)')
     parser.add_argument('--version', action='version', version=f'SpinThatShit v{VERSION}')
-    
+
     args = parser.parse_args()
-    
+
+    # Initialize language
+    if args.lang:
+        # Use language from command line
+        init_i18n(args.lang)
+        save_language_config(args.lang)
+    else:
+        # Check if language is already configured
+        saved_lang = load_language_config()
+        if saved_lang == 'en' and not (get_config_dir() / "language.json").exists():
+            # First run - ask user to select language
+            selected_lang = select_language()
+            init_i18n(selected_lang)
+        else:
+            # Use saved language
+            init_i18n(saved_lang)
+
     # Handle Ctrl+C gracefully
     def signal_handler(sig, frame):
-        print(czech("\n\n⚠️  Zastaveno uživatelem (Ctrl+C)"))
-        print(czech("   Stav byl uložen. Použijte --resume pro pokračování.\n"))
+        print(f"\n\n⚠️  {t('orchestrator.stopped_by_user')}")
+        print(f"   {t('orchestrator.state_saved')}\n")
         sys.exit(0)
-    
+
     signal.signal(signal.SIGINT, signal_handler)
-    
+
     # Get paths
     if args.docs and args.dev:
         docs_path = args.docs
         dev_path = args.dev
     else:
         docs_path, dev_path = interactive_setup()
-    
+
     # Create and run orchestrator
     try:
         orchestrator = Orchestrator(docs_path, dev_path)
         orchestrator.run_full_workflow()
     except Exception as e:
-        log(czech(f"Kritická chyba: {str(e)}"), "ERROR")
+        log(t("orchestrator.critical_error", error=str(e)), "ERROR")
         raise
 
 if __name__ == "__main__":

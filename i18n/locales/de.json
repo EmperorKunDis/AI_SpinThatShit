@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "Autonome KI-Agenten-Orchestrierung für Softwareentwicklung",
+    "version": "Version {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - KI-Agenten-Orchestrator v{version}",
+    "message": "Willkommen! Lass uns dein Projekt einrichten.",
+    "language_select": "Wähle deine Sprache / Select your language / Vyberte jazyk",
+    "language_prompt": "Gib den Sprachcode ein (z.B. en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "Pfad zur Dokumentation (oder 'new' zum Erstellen)",
+    "docs_new_path": "Gib den Pfad für den neuen Dokumentationsordner ein",
+    "docs_confirm_create": "Ordner '{path}' erstellen? [Y/n]",
+    "docs_created": "Ordner erstellt: {path}",
+    "docs_found": "Dokumentation gefunden: {path}",
+    "docs_not_folder": "Der angegebene Pfad ist kein Ordner",
+    "dev_prompt": "Pfad zum Entwicklungsordner (oder 'new' zum Erstellen)",
+    "dev_new_path": "Gib den Pfad für den neuen Entwicklungsordner ein",
+    "dev_confirm_create": "Ordner '{path}' erstellen? [Y/n]",
+    "dev_created": "Ordner erstellt: {path}",
+    "dev_found": "Entwicklungsordner gefunden: {path}",
+    "dev_not_folder": "Der angegebene Pfad ist kein Ordner",
+    "folder_not_exist": "Ordner existiert nicht. Erstellen? [Y/n]",
+    "summary_title": "Konfigurationsübersicht",
+    "summary_docs": "Dokumentation",
+    "summary_dev": "Entwicklung",
+    "summary_doc_files": "Dateien in der Dokumentation",
+    "summary_dev_files": "Dateien in der Entwicklung",
+    "confirm_start": "Orchestrierung starten? [Y/n]",
+    "cancelled": "Vom Benutzer abgebrochen."
+  },
+  "orchestrator": {
+    "initialized": "Orchestrator initialisiert",
+    "workflow_start": "VOLLSTÄNDIGER ENTWICKLUNGSWORKFLOW WIRD GESTARTET",
+    "workflow_complete": "WORKFLOW ABGESCHLOSSEN",
+    "workflow_stopped": "Workflow in Phase gestoppt: {phase}",
+    "resume_from": "Fortsetzung ab Phase: {phase}",
+    "final_supervision": "ABSCHLIESSENDE ÜBERWACHUNG",
+    "evolution": "SYSTEMENTWICKLUNG",
+    "stopped_by_user": "Vom Benutzer gestoppt (Ctrl+C)",
+    "state_saved": "Zustand gespeichert. Verwende --resume zum Fortfahren.",
+    "critical_error": "Kritischer Fehler: {error}"
+  },
+  "agent": {
+    "starting": "Agent wird gestartet: {role}",
+    "completed": "Agent {role} abgeschlossen (Kontext: ~{percent}%)",
+    "timeout": "Agent {role} Zeitüberschreitung nach {minutes} Minuten",
+    "failed": "Agent fehlgeschlagen: {issue}",
+    "recommendation": "Empfehlung: {fix}",
+    "unclear_state": "Agent {role} endete ohne klaren Zustand",
+    "retry": "Versuche zu reparieren und neu zu starten...",
+    "max_retries": "Maximale Wiederholungen für {role} erreicht",
+    "context_limit": "Kontext bei {percent}% - Übergabe an nächsten Agenten",
+    "restart": "Agent {role} wird neu gestartet (Versuch {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Git-Repository initialisiert",
+    "commit": "Commit: {message}",
+    "commit_failed": "Commit fehlgeschlagen: {error}",
+    "tag_created": "Tag '{tag}' erstellt und gepusht",
+    "tag_created_no_push": "Tag '{tag}' erstellt (Push fehlgeschlagen - möglicherweise kein Remote)",
+    "push_success": "Änderungen zu GitHub gepusht",
+    "push_failed": "Push fehlgeschlagen: {error}"
+  },
+  "phases": {
+    "planner": "Planer",
+    "designer": "Designer",
+    "engineer": "Ingenieur",
+    "developer": "Entwickler",
+    "reviewer": "Prüfer",
+    "tester": "Tester",
+    "supervisor": "Supervisor",
+    "evolver": "Entwickler"
+  },
+  "status": {
+    "info": "INFO",
+    "success": "ERFOLG",
+    "warning": "WARNUNG",
+    "error": "FEHLER",
+    "agent": "AGENT",
+    "phase": "PHASE"
+  }
+}

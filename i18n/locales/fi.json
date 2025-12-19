@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "Autonominen AI-agenttiorkestrointi ohjelmistokehitykseen",
+    "version": "Versio {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - AI-agenttiorkestroija v{version}",
+    "message": "Tervetuloa! Määritetään projektisi.",
+    "language_select": "Valitse kielesi / Select your language / Vyberte jazyk",
+    "language_prompt": "Anna kielikoodi (esim. en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "Polku dokumentaatioon (tai 'new' luodaksesi)",
+    "docs_new_path": "Anna polku uudelle dokumentaatiokansiolle",
+    "docs_confirm_create": "Luodaanko kansio '{path}'? [Y/n]",
+    "docs_created": "Kansio luotu: {path}",
+    "docs_found": "Dokumentaatio löydetty: {path}",
+    "docs_not_folder": "Määritetty polku ei ole kansio",
+    "dev_prompt": "Polku kehityshakemistoon (tai 'new' luodaksesi)",
+    "dev_new_path": "Anna polku uudelle kehityskansioon",
+    "dev_confirm_create": "Luodaanko kansio '{path}'? [Y/n]",
+    "dev_created": "Kansio luotu: {path}",
+    "dev_found": "Kehityskansio löydetty: {path}",
+    "dev_not_folder": "Määritetty polku ei ole kansio",
+    "folder_not_exist": "Kansio ei ole olemassa. Luodaanko se? [Y/n]",
+    "summary_title": "Konfiguraation yhteenveto",
+    "summary_docs": "Dokumentaatio",
+    "summary_dev": "Kehitys",
+    "summary_doc_files": "Tiedostot dokumentaatiossa",
+    "summary_dev_files": "Tiedostot kehityksessä",
+    "confirm_start": "Aloitetaanko orkestrointi? [Y/n]",
+    "cancelled": "Käyttäjä peruutti."
+  },
+  "orchestrator": {
+    "initialized": "Orkestroija alustettu",
+    "workflow_start": "ALOITETAAN TÄYDELLINEN KEHITYSTYÖNKULKU",
+    "workflow_complete": "TYÖNKULKU VALMIS",
+    "workflow_stopped": "Työnkulku pysäytetty vaiheessa: {phase}",
+    "resume_from": "Jatketaan vaiheesta: {phase}",
+    "final_supervision": "LOPULLINEN VALVONTA",
+    "evolution": "JÄRJESTELMÄN KEHITYS",
+    "stopped_by_user": "Käyttäjä pysäytti (Ctrl+C)",
+    "state_saved": "Tila tallennettu. Käytä --resume jatkaaksesi.",
+    "critical_error": "Kriittinen virhe: {error}"
+  },
+  "agent": {
+    "starting": "Käynnistetään agentti: {role}",
+    "completed": "Agentti {role} valmis (konteksti: ~{percent}%)",
+    "timeout": "Agentti {role} aikakatkaisu {minutes} minuutin jälkeen",
+    "failed": "Agentti epäonnistui: {issue}",
+    "recommendation": "Suositus: {fix}",
+    "unclear_state": "Agentti {role} päättyi ilman selkeää tilaa",
+    "retry": "Yritetään korjata ja käynnistää uudelleen...",
+    "max_retries": "Maksimi yritykset saavutettu agentille {role}",
+    "context_limit": "Konteksti {percent}% - siirretään seuraavalle agentille",
+    "restart": "Käynnistetään agentti {role} uudelleen (yritys {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Git-repositorio alustettu",
+    "commit": "Commit: {message}",
+    "commit_failed": "Commit epäonnistui: {error}",
+    "tag_created": "Tagi '{tag}' luotu ja työnnetty",
+    "tag_created_no_push": "Tagi '{tag}' luotu (työntö epäonnistui - ei etävarastoa)",
+    "push_success": "Muutokset työnnetty GitHubiin",
+    "push_failed": "Työntö epäonnistui: {error}"
+  },
+  "phases": {
+    "planner": "Suunnittelija",
+    "designer": "Suunnittelija",
+    "engineer": "Insinööri",
+    "developer": "Kehittäjä",
+    "reviewer": "Arvioija",
+    "tester": "Testaaja",
+    "supervisor": "Valvoja",
+    "evolver": "Kehittäjä"
+  },
+  "status": {
+    "info": "TIETO",
+    "success": "ONNISTUI",
+    "warning": "VAROITUS",
+    "error": "VIRHE",
+    "agent": "AGENTTI",
+    "phase": "VAIHE"
+  }
+}

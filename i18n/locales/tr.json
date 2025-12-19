@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "Yazılım Geliştirme için Otonom Yapay Zeka Ajan Orkestrayonu",
+    "version": "Sürüm {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - Yapay Zeka Ajan Orkestratörü v{version}",
+    "message": "Hoş geldiniz! Projenizi kuralım.",
+    "language_select": "Dilinizi seçin / Select your language / Vyberte jazyk",
+    "language_prompt": "Dil kodunu girin (örn: en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "Dokümantasyon yolu (veya oluşturmak için 'new')",
+    "docs_new_path": "Yeni dokümantasyon klasörü için yol girin",
+    "docs_confirm_create": "'{path}' klasörü oluşturulsun mu? [Y/n]",
+    "docs_created": "Klasör oluşturuldu: {path}",
+    "docs_found": "Dokümantasyon bulundu: {path}",
+    "docs_not_folder": "Belirtilen yol bir klasör değil",
+    "dev_prompt": "Geliştirme klasörü yolu (veya oluşturmak için 'new')",
+    "dev_new_path": "Yeni geliştirme klasörü için yol girin",
+    "dev_confirm_create": "'{path}' klasörü oluşturulsun mu? [Y/n]",
+    "dev_created": "Klasör oluşturuldu: {path}",
+    "dev_found": "Geliştirme klasörü bulundu: {path}",
+    "dev_not_folder": "Belirtilen yol bir klasör değil",
+    "folder_not_exist": "Klasör mevcut değil. Oluşturulsun mu? [Y/n]",
+    "summary_title": "Yapılandırma Özeti",
+    "summary_docs": "Dokümantasyon",
+    "summary_dev": "Geliştirme",
+    "summary_doc_files": "Dokümantasyondaki dosyalar",
+    "summary_dev_files": "Geliştirmedeki dosyalar",
+    "confirm_start": "Orkestrasyon başlatılsın mı? [Y/n]",
+    "cancelled": "Kullanıcı tarafından iptal edildi."
+  },
+  "orchestrator": {
+    "initialized": "Orkestratör başlatıldı",
+    "workflow_start": "EKSIKSIZ GELIŞTIRME IS AKIŞI BAŞLATILIYOR",
+    "workflow_complete": "İŞ AKIŞI TAMAMLANDI",
+    "workflow_stopped": "İş akışı aşamada durdu: {phase}",
+    "resume_from": "Aşamadan devam ediliyor: {phase}",
+    "final_supervision": "SON DENETIM",
+    "evolution": "SISTEM EVRIMI",
+    "stopped_by_user": "Kullanıcı tarafından durduruldu (Ctrl+C)",
+    "state_saved": "Durum kaydedildi. Devam etmek için --resume kullanın.",
+    "critical_error": "Kritik hata: {error}"
+  },
+  "agent": {
+    "starting": "Ajan başlatılıyor: {role}",
+    "completed": "Ajan {role} tamamlandı (bağlam: ~{percent}%)",
+    "timeout": "Ajan {role} {minutes} dakika sonra zaman aşımına uğradı",
+    "failed": "Ajan başarısız oldu: {issue}",
+    "recommendation": "Öneri: {fix}",
+    "unclear_state": "Ajan {role} net bir durum olmadan sonlandı",
+    "retry": "Düzeltme ve yeniden başlatma deneniyor...",
+    "max_retries": "{role} için maksimum deneme sayısına ulaşıldı",
+    "context_limit": "Bağlam %{percent}'e ulaştı - sonraki ajana devrediliyor",
+    "restart": "Ajan {role} yeniden başlatılıyor (deneme {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Git deposu başlatıldı",
+    "commit": "Commit: {message}",
+    "commit_failed": "Commit başarısız oldu: {error}",
+    "tag_created": "'{tag}' etiketi oluşturuldu ve gönderildi",
+    "tag_created_no_push": "'{tag}' etiketi oluşturuldu (gönderim başarısız - muhtemelen uzak depo yok)",
+    "push_success": "Değişiklikler GitHub'a gönderildi",
+    "push_failed": "Gönderim başarısız oldu: {error}"
+  },
+  "phases": {
+    "planner": "Planlayıcı",
+    "designer": "Tasarımcı",
+    "engineer": "Mühendis",
+    "developer": "Geliştirici",
+    "reviewer": "İnceleyici",
+    "tester": "Test Uzmanı",
+    "supervisor": "Denetçi",
+    "evolver": "Gelişimci"
+  },
+  "status": {
+    "info": "BİLGİ",
+    "success": "BAŞARI",
+    "warning": "UYARI",
+    "error": "HATA",
+    "agent": "AJAN",
+    "phase": "AŞAMA"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "Orkestrasi Agen AI Otonom untuk Pengembangan Perangkat Lunak",
+    "version": "Versi {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - Orkestrator Agen AI v{version}",
+    "message": "Selamat datang! Mari siapkan proyek Anda.",
+    "language_select": "Pilih bahasa Anda / Select your language / Vyberte jazyk",
+    "language_prompt": "Masukkan kode bahasa (mis: en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "Path ke dokumentasi (atau 'new' untuk membuat)",
+    "docs_new_path": "Masukkan path untuk folder dokumentasi baru",
+    "docs_confirm_create": "Buat folder '{path}'? [Y/n]",
+    "docs_created": "Folder dibuat: {path}",
+    "docs_found": "Dokumentasi ditemukan: {path}",
+    "docs_not_folder": "Path yang ditentukan bukan folder",
+    "dev_prompt": "Path ke folder pengembangan (atau 'new' untuk membuat)",
+    "dev_new_path": "Masukkan path untuk folder pengembangan baru",
+    "dev_confirm_create": "Buat folder '{path}'? [Y/n]",
+    "dev_created": "Folder dibuat: {path}",
+    "dev_found": "Folder pengembangan ditemukan: {path}",
+    "dev_not_folder": "Path yang ditentukan bukan folder",
+    "folder_not_exist": "Folder tidak ada. Buat folder? [Y/n]",
+    "summary_title": "Ringkasan Konfigurasi",
+    "summary_docs": "Dokumentasi",
+    "summary_dev": "Pengembangan",
+    "summary_doc_files": "File dalam dokumentasi",
+    "summary_dev_files": "File dalam pengembangan",
+    "confirm_start": "Mulai orkestrasi? [Y/n]",
+    "cancelled": "Dibatalkan oleh pengguna."
+  },
+  "orchestrator": {
+    "initialized": "Orkestrator diinisialisasi",
+    "workflow_start": "MEMULAI ALUR KERJA PENGEMBANGAN LENGKAP",
+    "workflow_complete": "ALUR KERJA SELESAI",
+    "workflow_stopped": "Alur kerja dihentikan pada fase: {phase}",
+    "resume_from": "Melanjutkan dari fase: {phase}",
+    "final_supervision": "PENGAWASAN AKHIR",
+    "evolution": "EVOLUSI SISTEM",
+    "stopped_by_user": "Dihentikan oleh pengguna (Ctrl+C)",
+    "state_saved": "Status tersimpan. Gunakan --resume untuk melanjutkan.",
+    "critical_error": "Kesalahan kritis: {error}"
+  },
+  "agent": {
+    "starting": "Memulai agen: {role}",
+    "completed": "Agen {role} selesai (konteks: ~{percent}%)",
+    "timeout": "Agen {role} timeout setelah {minutes} menit",
+    "failed": "Agen gagal: {issue}",
+    "recommendation": "Rekomendasi: {fix}",
+    "unclear_state": "Agen {role} berakhir tanpa status yang jelas",
+    "retry": "Mencoba memperbaiki dan memulai ulang...",
+    "max_retries": "Percobaan maksimum tercapai untuk {role}",
+    "context_limit": "Konteks pada {percent}% - menyerahkan ke agen berikutnya",
+    "restart": "Memulai ulang agen {role} (percobaan {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Repositori Git diinisialisasi",
+    "commit": "Commit: {message}",
+    "commit_failed": "Commit gagal: {error}",
+    "tag_created": "Tag '{tag}' dibuat dan dipush",
+    "tag_created_no_push": "Tag '{tag}' dibuat (push gagal - mungkin tidak ada remote)",
+    "push_success": "Perubahan dipush ke GitHub",
+    "push_failed": "Push gagal: {error}"
+  },
+  "phases": {
+    "planner": "Perencana",
+    "designer": "Desainer",
+    "engineer": "Insinyur",
+    "developer": "Pengembang",
+    "reviewer": "Peninjau",
+    "tester": "Penguji",
+    "supervisor": "Pengawas",
+    "evolver": "Pengembang"
+  },
+  "status": {
+    "info": "INFO",
+    "success": "SUKSES",
+    "warning": "PERINGATAN",
+    "error": "KESALAHAN",
+    "agent": "AGEN",
+    "phase": "FASE"
+  }
+}

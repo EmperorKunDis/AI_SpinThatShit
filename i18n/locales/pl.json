@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "Autonomiczna Orkiestracja Agentów AI dla Rozwoju Oprogramowania",
+    "version": "Wersja {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - Orkiestrator Agentów AI v{version}",
+    "message": "Witaj! Skonfigurujmy Twój projekt.",
+    "language_select": "Wybierz język / Select your language / Vyberte jazyk",
+    "language_prompt": "Wprowadź kod języka (np. en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "Ścieżka do dokumentacji (lub 'new' aby utworzyć)",
+    "docs_new_path": "Wprowadź ścieżkę do nowego folderu dokumentacji",
+    "docs_confirm_create": "Utworzyć folder '{path}'? [Y/n]",
+    "docs_created": "Utworzono folder: {path}",
+    "docs_found": "Znaleziono dokumentację: {path}",
+    "docs_not_folder": "Podana ścieżka nie jest folderem",
+    "dev_prompt": "Ścieżka do folderu rozwoju (lub 'new' aby utworzyć)",
+    "dev_new_path": "Wprowadź ścieżkę do nowego folderu rozwoju",
+    "dev_confirm_create": "Utworzyć folder '{path}'? [Y/n]",
+    "dev_created": "Utworzono folder: {path}",
+    "dev_found": "Znaleziono folder rozwoju: {path}",
+    "dev_not_folder": "Podana ścieżka nie jest folderem",
+    "folder_not_exist": "Folder nie istnieje. Utworzyć go? [Y/n]",
+    "summary_title": "Podsumowanie Konfiguracji",
+    "summary_docs": "Dokumentacja",
+    "summary_dev": "Rozwój",
+    "summary_doc_files": "Pliki w dokumentacji",
+    "summary_dev_files": "Pliki w rozwoju",
+    "confirm_start": "Rozpocząć orkiestrację? [Y/n]",
+    "cancelled": "Anulowano przez użytkownika."
+  },
+  "orchestrator": {
+    "initialized": "Orkiestrator zainicjalizowany",
+    "workflow_start": "ROZPOCZĘCIE PEŁNEGO PROCESU ROZWOJU",
+    "workflow_complete": "PROCES ZAKOŃCZONY",
+    "workflow_stopped": "Proces zatrzymany w fazie: {phase}",
+    "resume_from": "Wznawianie od fazy: {phase}",
+    "final_supervision": "KOŃCOWY NADZÓR",
+    "evolution": "EWOLUCJA SYSTEMU",
+    "stopped_by_user": "Zatrzymane przez użytkownika (Ctrl+C)",
+    "state_saved": "Stan zapisany. Użyj --resume aby kontynuować.",
+    "critical_error": "Błąd krytyczny: {error}"
+  },
+  "agent": {
+    "starting": "Uruchamianie agenta: {role}",
+    "completed": "Agent {role} zakończony (kontekst: ~{percent}%)",
+    "timeout": "Przekroczenie czasu agenta {role} po {minutes} minutach",
+    "failed": "Agent zawiódł: {issue}",
+    "recommendation": "Zalecenie: {fix}",
+    "unclear_state": "Agent {role} zakończył się bez wyraźnego stanu",
+    "retry": "Próba naprawy i ponownego uruchomienia...",
+    "max_retries": "Osiągnięto maksymalną liczbę prób dla {role}",
+    "context_limit": "Kontekst na {percent}% - przekazanie do następnego agenta",
+    "restart": "Ponowne uruchamianie agenta {role} (próba {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Repozytorium Git zainicjalizowane",
+    "commit": "Commit: {message}",
+    "commit_failed": "Commit nieudany: {error}",
+    "tag_created": "Tag '{tag}' utworzony i wypchnięty",
+    "tag_created_no_push": "Tag '{tag}' utworzony (wypchnięcie nieudane - prawdopodobnie brak remote)",
+    "push_success": "Zmiany wypchnięte do GitHub",
+    "push_failed": "Wypchnięcie nieudane: {error}"
+  },
+  "phases": {
+    "planner": "Planista",
+    "designer": "Projektant",
+    "engineer": "Inżynier",
+    "developer": "Programista",
+    "reviewer": "Recenzent",
+    "tester": "Tester",
+    "supervisor": "Nadzorca",
+    "evolver": "Ewolucjonista"
+  },
+  "status": {
+    "info": "INFO",
+    "success": "SUKCES",
+    "warning": "OSTRZEŻENIE",
+    "error": "BŁĄD",
+    "agent": "AGENT",
+    "phase": "FAZA"
+  }
+}

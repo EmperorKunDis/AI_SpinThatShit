@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "تنسيق الوكيل الذكي المستقل لتطوير البرمجيات",
+    "version": "الإصدار {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - منسق الوكيل الذكي v{version}",
+    "message": "مرحباً! لنقم بإعداد مشروعك.",
+    "language_select": "اختر لغتك / Select your language / Vyberte jazyk",
+    "language_prompt": "أدخل رمز اللغة (مثال: en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "مسار التوثيق (أو 'new' للإنشاء)",
+    "docs_new_path": "أدخل المسار لمجلد التوثيق الجديد",
+    "docs_confirm_create": "إنشاء المجلد '{path}'؟ [Y/n]",
+    "docs_created": "تم إنشاء المجلد: {path}",
+    "docs_found": "تم العثور على التوثيق: {path}",
+    "docs_not_folder": "المسار المحدد ليس مجلداً",
+    "dev_prompt": "مسار مجلد التطوير (أو 'new' للإنشاء)",
+    "dev_new_path": "أدخل المسار لمجلد التطوير الجديد",
+    "dev_confirm_create": "إنشاء المجلد '{path}'؟ [Y/n]",
+    "dev_created": "تم إنشاء المجلد: {path}",
+    "dev_found": "تم العثور على مجلد التطوير: {path}",
+    "dev_not_folder": "المسار المحدد ليس مجلداً",
+    "folder_not_exist": "المجلد غير موجود. إنشاؤه؟ [Y/n]",
+    "summary_title": "ملخص الإعدادات",
+    "summary_docs": "التوثيق",
+    "summary_dev": "التطوير",
+    "summary_doc_files": "الملفات في التوثيق",
+    "summary_dev_files": "الملفات في التطوير",
+    "confirm_start": "بدء التنسيق؟ [Y/n]",
+    "cancelled": "تم الإلغاء من قبل المستخدم."
+  },
+  "orchestrator": {
+    "initialized": "تم تهيئة المنسق",
+    "workflow_start": "بدء سير عمل التطوير الكامل",
+    "workflow_complete": "اكتمل سير العمل",
+    "workflow_stopped": "توقف سير العمل في المرحلة: {phase}",
+    "resume_from": "الاستئناف من المرحلة: {phase}",
+    "final_supervision": "الإشراف النهائي",
+    "evolution": "تطور النظام",
+    "stopped_by_user": "تم الإيقاف من قبل المستخدم (Ctrl+C)",
+    "state_saved": "تم حفظ الحالة. استخدم --resume للمتابعة.",
+    "critical_error": "خطأ حرج: {error}"
+  },
+  "agent": {
+    "starting": "بدء الوكيل: {role}",
+    "completed": "اكتمل الوكيل {role} (السياق: ~{percent}%)",
+    "timeout": "انتهت مهلة الوكيل {role} بعد {minutes} دقيقة",
+    "failed": "فشل الوكيل: {issue}",
+    "recommendation": "التوصية: {fix}",
+    "unclear_state": "انتهى الوكيل {role} بدون حالة واضحة",
+    "retry": "محاولة الإصلاح وإعادة التشغيل...",
+    "max_retries": "تم الوصول إلى الحد الأقصى من المحاولات لـ {role}",
+    "context_limit": "السياق عند {percent}% - التسليم للوكيل التالي",
+    "restart": "إعادة تشغيل الوكيل {role} (المحاولة {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "تم تهيئة مستودع Git",
+    "commit": "الالتزام: {message}",
+    "commit_failed": "فشل الالتزام: {error}",
+    "tag_created": "تم إنشاء الوسم '{tag}' ودفعه",
+    "tag_created_no_push": "تم إنشاء الوسم '{tag}' (فشل الدفع - ربما لا يوجد مستودع بعيد)",
+    "push_success": "تم دفع التغييرات إلى GitHub",
+    "push_failed": "فشل الدفع: {error}"
+  },
+  "phases": {
+    "planner": "المخطط",
+    "designer": "المصمم",
+    "engineer": "المهندس",
+    "developer": "المطور",
+    "reviewer": "المراجع",
+    "tester": "المختبر",
+    "supervisor": "المشرف",
+    "evolver": "المطور"
+  },
+  "status": {
+    "info": "معلومات",
+    "success": "نجاح",
+    "warning": "تحذير",
+    "error": "خطأ",
+    "agent": "وكيل",
+    "phase": "مرحلة"
+  }
+}

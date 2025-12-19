@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "هماهنگی خودکار عوامل هوش مصنوعی برای توسعه نرم‌افزار",
+    "version": "نسخه {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - هماهنگ‌کننده عوامل هوش مصنوعی v{version}",
+    "message": "خوش آمدید! بیایید پروژه شما را راه‌اندازی کنیم.",
+    "language_select": "زبان خود را انتخاب کنید / Select your language / Vyberte jazyk",
+    "language_prompt": "کد زبان را وارد کنید (مثلاً: en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "مسیر مستندات (یا 'new' برای ایجاد)",
+    "docs_new_path": "مسیر پوشه جدید مستندات را وارد کنید",
+    "docs_confirm_create": "پوشه '{path}' ایجاد شود؟ [Y/n]",
+    "docs_created": "پوشه ایجاد شد: {path}",
+    "docs_found": "مستندات یافت شد: {path}",
+    "docs_not_folder": "مسیر مشخص شده یک پوشه نیست",
+    "dev_prompt": "مسیر پوشه توسعه (یا 'new' برای ایجاد)",
+    "dev_new_path": "مسیر پوشه جدید توسعه را وارد کنید",
+    "dev_confirm_create": "پوشه '{path}' ایجاد شود؟ [Y/n]",
+    "dev_created": "پوشه ایجاد شد: {path}",
+    "dev_found": "پوشه توسعه یافت شد: {path}",
+    "dev_not_folder": "مسیر مشخص شده یک پوشه نیست",
+    "folder_not_exist": "پوشه وجود ندارد. آن را ایجاد کنیم؟ [Y/n]",
+    "summary_title": "خلاصه پیکربندی",
+    "summary_docs": "مستندات",
+    "summary_dev": "توسعه",
+    "summary_doc_files": "فایل‌ها در مستندات",
+    "summary_dev_files": "فایل‌ها در توسعه",
+    "confirm_start": "هماهنگی شروع شود؟ [Y/n]",
+    "cancelled": "توسط کاربر لغو شد."
+  },
+  "orchestrator": {
+    "initialized": "هماهنگ‌کننده راه‌اندازی شد",
+    "workflow_start": "شروع جریان کاری توسعه کامل",
+    "workflow_complete": "جریان کاری کامل شد",
+    "workflow_stopped": "جریان کاری در مرحله متوقف شد: {phase}",
+    "resume_from": "ادامه از مرحله: {phase}",
+    "final_supervision": "نظارت نهایی",
+    "evolution": "تکامل سیستم",
+    "stopped_by_user": "توسط کاربر متوقف شد (Ctrl+C)",
+    "state_saved": "وضعیت ذخیره شد. برای ادامه از --resume استفاده کنید.",
+    "critical_error": "خطای بحرانی: {error}"
+  },
+  "agent": {
+    "starting": "شروع عامل: {role}",
+    "completed": "عامل {role} کامل شد (زمینه: ~{percent}%)",
+    "timeout": "عامل {role} پس از {minutes} دقیقه به پایان رسید",
+    "failed": "عامل شکست خورد: {issue}",
+    "recommendation": "توصیه: {fix}",
+    "unclear_state": "عامل {role} بدون وضعیت واضح پایان یافت",
+    "retry": "تلاش برای تعمیر و راه‌اندازی مجدد...",
+    "max_retries": "حداکثر تلاش‌ها برای {role} به دست آمد",
+    "context_limit": "زمینه در {percent}% - واگذاری به عامل بعدی",
+    "restart": "راه‌اندازی مجدد عامل {role} (تلاش {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "مخزن Git راه‌اندازی شد",
+    "commit": "کامیت: {message}",
+    "commit_failed": "کامیت شکست خورد: {error}",
+    "tag_created": "برچسب '{tag}' ایجاد و ارسال شد",
+    "tag_created_no_push": "برچسب '{tag}' ایجاد شد (ارسال شکست خورد - احتملاً remote وجود ندارد)",
+    "push_success": "تغییرات به GitHub ارسال شد",
+    "push_failed": "ارسال شکست خورد: {error}"
+  },
+  "phases": {
+    "planner": "برنامه‌ریز",
+    "designer": "طراح",
+    "engineer": "مهندس",
+    "developer": "توسعه‌دهنده",
+    "reviewer": "بازبین",
+    "tester": "آزمایش‌گر",
+    "supervisor": "ناظر",
+    "evolver": "تکامل‌دهنده"
+  },
+  "status": {
+    "info": "اطلاعات",
+    "success": "موفقیت",
+    "warning": "هشدار",
+    "error": "خطا",
+    "agent": "عامل",
+    "phase": "مرحله"
+  }
+}

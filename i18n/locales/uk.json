@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "Автономна оркестрація AI-агентів для розробки програмного забезпечення",
+    "version": "Версія {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - Оркестратор AI-агентів v{version}",
+    "message": "Ласкаво просимо! Давайте налаштуємо ваш проект.",
+    "language_select": "Оберіть мову / Select your language / Vyberte jazyk",
+    "language_prompt": "Введіть код мови (наприклад: en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "Шлях до документації (або 'new' для створення)",
+    "docs_new_path": "Введіть шлях для нової папки документації",
+    "docs_confirm_create": "Створити папку '{path}'? [Y/n]",
+    "docs_created": "Папку створено: {path}",
+    "docs_found": "Документацію знайдено: {path}",
+    "docs_not_folder": "Вказаний шлях не є папкою",
+    "dev_prompt": "Шлях до папки розробки (або 'new' для створення)",
+    "dev_new_path": "Введіть шлях для нової папки розробки",
+    "dev_confirm_create": "Створити папку '{path}'? [Y/n]",
+    "dev_created": "Папку створено: {path}",
+    "dev_found": "Папку розробки знайдено: {path}",
+    "dev_not_folder": "Вказаний шлях не є папкою",
+    "folder_not_exist": "Папка не існує. Створити її? [Y/n]",
+    "summary_title": "Підсумок конфігурації",
+    "summary_docs": "Документація",
+    "summary_dev": "Розробка",
+    "summary_doc_files": "Файлів у документації",
+    "summary_dev_files": "Файлів у розробці",
+    "confirm_start": "Почати оркестрацію? [Y/n]",
+    "cancelled": "Скасовано користувачем."
+  },
+  "orchestrator": {
+    "initialized": "Оркестратор ініціалізовано",
+    "workflow_start": "ЗАПУСК ПОВНОГО РОБОЧОГО ПРОЦЕСУ РОЗРОБКИ",
+    "workflow_complete": "РОБОЧИЙ ПРОЦЕС ЗАВЕРШЕНО",
+    "workflow_stopped": "Робочий процес зупинено на етапі: {phase}",
+    "resume_from": "Відновлення з етапу: {phase}",
+    "final_supervision": "ФІНАЛЬНИЙ НАГЛЯД",
+    "evolution": "ЕВОЛЮЦІЯ СИСТЕМИ",
+    "stopped_by_user": "Зупинено користувачем (Ctrl+C)",
+    "state_saved": "Стан збережено. Використайте --resume для продовження.",
+    "critical_error": "Критична помилка: {error}"
+  },
+  "agent": {
+    "starting": "Запуск агента: {role}",
+    "completed": "Агент {role} завершено (контекст: ~{percent}%)",
+    "timeout": "Тайм-аут агента {role} через {minutes} хвилин",
+    "failed": "Агент не впорався: {issue}",
+    "recommendation": "Рекомендація: {fix}",
+    "unclear_state": "Агент {role} завершився без чіткого стану",
+    "retry": "Спроба виправлення та перезапуску...",
+    "max_retries": "Досягнуто максимальну кількість спроб для {role}",
+    "context_limit": "Контекст на {percent}% - передача наступному агенту",
+    "restart": "Перезапуск агента {role} (спроба {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Репозиторій Git ініціалізовано",
+    "commit": "Коміт: {message}",
+    "commit_failed": "Коміт не вдався: {error}",
+    "tag_created": "Тег '{tag}' створено та відправлено",
+    "tag_created_no_push": "Тег '{tag}' створено (відправлення не вдалося - можливо, немає віддаленого репозиторію)",
+    "push_success": "Зміни відправлено до GitHub",
+    "push_failed": "Відправлення не вдалося: {error}"
+  },
+  "phases": {
+    "planner": "Планувальник",
+    "designer": "Дизайнер",
+    "engineer": "Інженер",
+    "developer": "Розробник",
+    "reviewer": "Рецензент",
+    "tester": "Тестувальник",
+    "supervisor": "Наглядач",
+    "evolver": "Еволюціонер"
+  },
+  "status": {
+    "info": "ІНФО",
+    "success": "УСПІХ",
+    "warning": "ПОПЕРЕДЖЕННЯ",
+    "error": "ПОМИЛКА",
+    "agent": "АГЕНТ",
+    "phase": "ЕТАП"
+  }
+}

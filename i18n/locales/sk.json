@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "Autonómna orchestrácia AI agentov pre vývoj softvéru",
+    "version": "Verzia {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - Orchestrátor AI agentov v{version}",
+    "message": "Vitajte! Nastavme váš projekt.",
+    "language_select": "Vyberte jazyk / Select your language / 选择语言",
+    "language_prompt": "Zadajte kód jazyka (napr. en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "Cesta k dokumentácii (alebo 'new' pre vytvorenie)",
+    "docs_new_path": "Zadajte cestu pre nový priečinok dokumentácie",
+    "docs_confirm_create": "Vytvoriť priečinok '{path}'? [Y/n]",
+    "docs_created": "Priečinok vytvorený: {path}",
+    "docs_found": "Dokumentácia nájdená: {path}",
+    "docs_not_folder": "Zadaná cesta nie je priečinok",
+    "dev_prompt": "Cesta k priečinku vývoja (alebo 'new' pre vytvorenie)",
+    "dev_new_path": "Zadajte cestu pre nový vývojový priečinok",
+    "dev_confirm_create": "Vytvoriť priečinok '{path}'? [Y/n]",
+    "dev_created": "Priečinok vytvorený: {path}",
+    "dev_found": "Vývojový priečinok nájdený: {path}",
+    "dev_not_folder": "Zadaná cesta nie je priečinok",
+    "folder_not_exist": "Priečinok neexistuje. Vytvoriť ho? [Y/n]",
+    "summary_title": "Súhrn konfigurácie",
+    "summary_docs": "Dokumentácia",
+    "summary_dev": "Vývoj",
+    "summary_doc_files": "Súbory v dokumentácii",
+    "summary_dev_files": "Súbory vo vývoji",
+    "confirm_start": "Spustiť orchestráciu? [Y/n]",
+    "cancelled": "Zrušené používateľom."
+  },
+  "orchestrator": {
+    "initialized": "Orchestrátor inicializovaný",
+    "workflow_start": "SPUSTENIE KOMPLETNÉHO VÝVOJOVÉHO WORKFLOW",
+    "workflow_complete": "WORKFLOW DOKONČENÉ",
+    "workflow_stopped": "Workflow zastavené vo fáze: {phase}",
+    "resume_from": "Pokračovanie od fázy: {phase}",
+    "final_supervision": "FINÁLNY DOHĽAD",
+    "evolution": "EVOLÚCIA SYSTÉMU",
+    "stopped_by_user": "Zastavené používateľom (Ctrl+C)",
+    "state_saved": "Stav uložený. Použite --resume pre pokračovanie.",
+    "critical_error": "Kritická chyba: {error}"
+  },
+  "agent": {
+    "starting": "Spúšťanie agenta: {role}",
+    "completed": "Agent {role} dokončený (kontext: ~{percent}%)",
+    "timeout": "Agent {role} vypršal po {minutes} minútach",
+    "failed": "Agent zlyhal: {issue}",
+    "recommendation": "Odporúčanie: {fix}",
+    "unclear_state": "Agent {role} skončil bez jasného stavu",
+    "retry": "Pokus o opravu a reštart...",
+    "max_retries": "Dosiahnutý maximálny počet pokusov pre {role}",
+    "context_limit": "Kontext na {percent}% - odovzdávanie ďalšiemu agentovi",
+    "restart": "Reštartovanie agenta {role} (pokus {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Git repozitár inicializovaný",
+    "commit": "Commit: {message}",
+    "commit_failed": "Commit zlyhal: {error}",
+    "tag_created": "Tag '{tag}' vytvorený a odoslaný",
+    "tag_created_no_push": "Tag '{tag}' vytvorený (odoslanie zlyhalo - pravdepodobne žiadny remote)",
+    "push_success": "Zmeny odoslané na GitHub",
+    "push_failed": "Odoslanie zlyhalo: {error}"
+  },
+  "phases": {
+    "planner": "Plánovač",
+    "designer": "Návrhár",
+    "engineer": "Inžinier",
+    "developer": "Vývojár",
+    "reviewer": "Recenzent",
+    "tester": "Tester",
+    "supervisor": "Supervízor",
+    "evolver": "Evolucionár"
+  },
+  "status": {
+    "info": "INFO",
+    "success": "ÚSPECH",
+    "warning": "VAROVANIE",
+    "error": "CHYBA",
+    "agent": "AGENT",
+    "phase": "FÁZA"
+  }
+}

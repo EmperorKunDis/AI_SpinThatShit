@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "Autonóm AI Ügynök Orkesztráció Szoftverfejlesztéshez",
+    "version": "Verzió {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - AI Ügynök Orkesztrátor v{version}",
+    "message": "Üdvözöljük! Állítsuk be a projektet.",
+    "language_select": "Válassza ki a nyelvet / Select your language / Vyberte jazyk",
+    "language_prompt": "Adja meg a nyelvi kódot (pl. en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "Dokumentáció elérési útja (vagy 'new' létrehozáshoz)",
+    "docs_new_path": "Adja meg az új dokumentációs mappa elérési útját",
+    "docs_confirm_create": "'{path}' mappa létrehozása? [Y/n]",
+    "docs_created": "Mappa létrehozva: {path}",
+    "docs_found": "Dokumentáció megtalálva: {path}",
+    "docs_not_folder": "A megadott elérési út nem mappa",
+    "dev_prompt": "Fejlesztési mappa elérési útja (vagy 'new' létrehozáshoz)",
+    "dev_new_path": "Adja meg az új fejlesztési mappa elérési útját",
+    "dev_confirm_create": "'{path}' mappa létrehozása? [Y/n]",
+    "dev_created": "Mappa létrehozva: {path}",
+    "dev_found": "Fejlesztési mappa megtalálva: {path}",
+    "dev_not_folder": "A megadott elérési út nem mappa",
+    "folder_not_exist": "A mappa nem létezik. Létrehozzuk? [Y/n]",
+    "summary_title": "Konfiguráció Összefoglalója",
+    "summary_docs": "Dokumentáció",
+    "summary_dev": "Fejlesztés",
+    "summary_doc_files": "Fájlok a dokumentációban",
+    "summary_dev_files": "Fájlok a fejlesztésben",
+    "confirm_start": "Orkesztrálás indítása? [Y/n]",
+    "cancelled": "Felhasználó által megszakítva."
+  },
+  "orchestrator": {
+    "initialized": "Orkesztrátor inicializálva",
+    "workflow_start": "TELJES FEJLESZTÉSI MUNKAFOLYAMAT INDÍTÁSA",
+    "workflow_complete": "MUNKAFOLYAMAT BEFEJEZVE",
+    "workflow_stopped": "Munkafolyamat leállítva a fázisban: {phase}",
+    "resume_from": "Folytatás a fázistól: {phase}",
+    "final_supervision": "VÉGSŐ FELÜGYELET",
+    "evolution": "RENDSZER EVOLÚCIÓ",
+    "stopped_by_user": "Felhasználó által leállítva (Ctrl+C)",
+    "state_saved": "Állapot mentve. Használja a --resume-t a folytatáshoz.",
+    "critical_error": "Kritikus hiba: {error}"
+  },
+  "agent": {
+    "starting": "Ügynök indítása: {role}",
+    "completed": "Ügynök {role} befejezve (kontextus: ~{percent}%)",
+    "timeout": "Ügynök {role} időtúllépés {minutes} perc után",
+    "failed": "Ügynök sikertelen: {issue}",
+    "recommendation": "Javaslat: {fix}",
+    "unclear_state": "Ügynök {role} tisztázatlan állapottal fejeződött be",
+    "retry": "Javítási és újraindítási kísérlet...",
+    "max_retries": "Maximális újrapróbálkozások elérve {role} esetében",
+    "context_limit": "Kontextus {percent}%-on - átadás a következő ügynöknek",
+    "restart": "Ügynök {role} újraindítása (kísérlet {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Git tárhely inicializálva",
+    "commit": "Commit: {message}",
+    "commit_failed": "Commit sikertelen: {error}",
+    "tag_created": "'{tag}' címke létrehozva és feltöltve",
+    "tag_created_no_push": "'{tag}' címke létrehozva (feltöltés sikertelen - valószínűleg nincs remote)",
+    "push_success": "Változások feltöltve a GitHubra",
+    "push_failed": "Feltöltés sikertelen: {error}"
+  },
+  "phases": {
+    "planner": "Tervező",
+    "designer": "Tervező",
+    "engineer": "Mérnök",
+    "developer": "Fejlesztő",
+    "reviewer": "Ellenőrző",
+    "tester": "Tesztelő",
+    "supervisor": "Felügyelő",
+    "evolver": "Fejlesztő"
+  },
+  "status": {
+    "info": "INFO",
+    "success": "SIKER",
+    "warning": "FIGYELMEZTETÉS",
+    "error": "HIBA",
+    "agent": "ÜGYNÖK",
+    "phase": "FÁZIS"
+  }
+}

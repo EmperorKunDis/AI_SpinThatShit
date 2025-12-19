@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "ソフトウェア開発のための自律型AIエージェントオーケストレーション",
+    "version": "バージョン {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - AIエージェントオーケストレーター v{version}",
+    "message": "ようこそ！プロジェクトをセットアップしましょう。",
+    "language_select": "言語を選択 / Select your language / Vyberte jazyk",
+    "language_prompt": "言語コードを入力してください（例：en, cs, zh-CN）"
+  },
+  "setup": {
+    "docs_prompt": "ドキュメントへのパス（または新規作成の場合は'new'）",
+    "docs_new_path": "新しいドキュメントフォルダのパスを入力してください",
+    "docs_confirm_create": "フォルダ'{path}'を作成しますか？ [Y/n]",
+    "docs_created": "フォルダを作成しました：{path}",
+    "docs_found": "ドキュメントが見つかりました：{path}",
+    "docs_not_folder": "指定されたパスはフォルダではありません",
+    "dev_prompt": "開発フォルダへのパス（または新規作成の場合は'new'）",
+    "dev_new_path": "新しい開発フォルダのパスを入力してください",
+    "dev_confirm_create": "フォルダ'{path}'を作成しますか？ [Y/n]",
+    "dev_created": "フォルダを作成しました：{path}",
+    "dev_found": "開発フォルダが見つかりました：{path}",
+    "dev_not_folder": "指定されたパスはフォルダではありません",
+    "folder_not_exist": "フォルダが存在しません。作成しますか？ [Y/n]",
+    "summary_title": "設定の概要",
+    "summary_docs": "ドキュメント",
+    "summary_dev": "開発",
+    "summary_doc_files": "ドキュメント内のファイル",
+    "summary_dev_files": "開発内のファイル",
+    "confirm_start": "オーケストレーションを開始しますか？ [Y/n]",
+    "cancelled": "ユーザーによってキャンセルされました。"
+  },
+  "orchestrator": {
+    "initialized": "オーケストレーターを初期化しました",
+    "workflow_start": "完全な開発ワークフローを開始します",
+    "workflow_complete": "ワークフローが完了しました",
+    "workflow_stopped": "ワークフローがフェーズで停止しました：{phase}",
+    "resume_from": "フェーズから再開します：{phase}",
+    "final_supervision": "最終監督",
+    "evolution": "システムの進化",
+    "stopped_by_user": "ユーザーによって停止されました（Ctrl+C）",
+    "state_saved": "状態を保存しました。続行するには --resume を使用してください。",
+    "critical_error": "重大なエラー：{error}"
+  },
+  "agent": {
+    "starting": "エージェントを起動しています：{role}",
+    "completed": "エージェント {role} が完了しました（コンテキスト：~{percent}%）",
+    "timeout": "エージェント {role} が {minutes} 分後にタイムアウトしました",
+    "failed": "エージェントが失敗しました：{issue}",
+    "recommendation": "推奨事項：{fix}",
+    "unclear_state": "エージェント {role} が明確な状態なしで終了しました",
+    "retry": "修正と再起動を試みています...",
+    "max_retries": "{role} の最大再試行回数に達しました",
+    "context_limit": "コンテキストが {percent}% に達しました - 次のエージェントに引き継ぎます",
+    "restart": "エージェント {role} を再起動しています（試行 {current}/{max}）"
+  },
+  "git": {
+    "repo_initialized": "Gitリポジトリを初期化しました",
+    "commit": "コミット：{message}",
+    "commit_failed": "コミットが失敗しました：{error}",
+    "tag_created": "タグ'{tag}'を作成してプッシュしました",
+    "tag_created_no_push": "タグ'{tag}'を作成しました（プッシュ失敗 - リモートがない可能性があります）",
+    "push_success": "変更をGitHubにプッシュしました",
+    "push_failed": "プッシュが失敗しました：{error}"
+  },
+  "phases": {
+    "planner": "プランナー",
+    "designer": "デザイナー",
+    "engineer": "エンジニア",
+    "developer": "開発者",
+    "reviewer": "レビュワー",
+    "tester": "テスター",
+    "supervisor": "スーパーバイザー",
+    "evolver": "進化者"
+  },
+  "status": {
+    "info": "情報",
+    "success": "成功",
+    "warning": "警告",
+    "error": "エラー",
+    "agent": "エージェント",
+    "phase": "フェーズ"
+  }
+}

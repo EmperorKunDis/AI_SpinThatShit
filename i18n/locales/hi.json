@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "SpinThatShit",
+    "tagline": "सॉफ्टवेयर विकास के लिए स्वायत्त AI एजेंट समन्वय",
+    "version": "संस्करण {version}"
+  },
+  "welcome": {
+    "header": "SpinThatShit - AI एजेंट ऑर्केस्ट्रेटर v{version}",
+    "message": "स्वागत है! आइए अपना प्रोजेक्ट सेट करें।",
+    "language_select": "अपनी भाषा चुनें / Select your language / Vyberte jazyk",
+    "language_prompt": "भाषा कोड दर्ज करें (उदा: en, cs, zh-CN)"
+  },
+  "setup": {
+    "docs_prompt": "दस्तावेज़ीकरण का पथ (या नया बनाने के लिए 'new')",
+    "docs_new_path": "नए दस्तावेज़ीकरण फ़ोल्डर के लिए पथ दर्ज करें",
+    "docs_confirm_create": "फ़ोल्डर '{path}' बनाएं? [Y/n]",
+    "docs_created": "फ़ोल्डर बनाया गया: {path}",
+    "docs_found": "दस्तावेज़ीकरण मिला: {path}",
+    "docs_not_folder": "निर्दिष्ट पथ एक फ़ोल्डर नहीं है",
+    "dev_prompt": "विकास फ़ोल्डर का पथ (या नया बनाने के लिए 'new')",
+    "dev_new_path": "नए विकास फ़ोल्डर के लिए पथ दर्ज करें",
+    "dev_confirm_create": "फ़ोल्डर '{path}' बनाएं? [Y/n]",
+    "dev_created": "फ़ोल्डर बनाया गया: {path}",
+    "dev_found": "विकास फ़ोल्डर मिला: {path}",
+    "dev_not_folder": "निर्दिष्ट पथ एक फ़ोल्डर नहीं है",
+    "folder_not_exist": "फ़ोल्डर मौजूद नहीं है। इसे बनाएं? [Y/n]",
+    "summary_title": "कॉन्फ़िगरेशन सारांश",
+    "summary_docs": "दस्तावेज़ीकरण",
+    "summary_dev": "विकास",
+    "summary_doc_files": "दस्तावेज़ीकरण में फ़ाइलें",
+    "summary_dev_files": "विकास में फ़ाइलें",
+    "confirm_start": "समन्वय शुरू करें? [Y/n]",
+    "cancelled": "उपयोगकर्ता द्वारा रद्द किया गया।"
+  },
+  "orchestrator": {
+    "initialized": "ऑर्केस्ट्रेटर प्रारंभ किया गया",
+    "workflow_start": "संपूर्ण विकास वर्कफ़्लो प्रारंभ हो रहा है",
+    "workflow_complete": "वर्कफ़्लो पूर्ण हुआ",
+    "workflow_stopped": "वर्कफ़्लो चरण पर रुका: {phase}",
+    "resume_from": "चरण से फिर से शुरू हो रहा है: {phase}",
+    "final_supervision": "अंतिम पर्यवेक्षण",
+    "evolution": "सिस्टम विकास",
+    "stopped_by_user": "उपयोगकर्ता द्वारा रोका गया (Ctrl+C)",
+    "state_saved": "स्थिति सहेजी गई। जारी रखने के लिए --resume का उपयोग करें।",
+    "critical_error": "गंभीर त्रुटि: {error}"
+  },
+  "agent": {
+    "starting": "एजेंट शुरू हो रहा है: {role}",
+    "completed": "एजेंट {role} पूर्ण हुआ (संदर्भ: ~{percent}%)",
+    "timeout": "एजेंट {role} {minutes} मिनट के बाद समय समाप्त",
+    "failed": "एजेंट विफल: {issue}",
+    "recommendation": "सिफारिश: {fix}",
+    "unclear_state": "एजेंट {role} स्पष्ट स्थिति के बिना समाप्त हुआ",
+    "retry": "सुधार और पुनः प्रारंभ का प्रयास...",
+    "max_retries": "{role} के लिए अधिकतम पुनः प्रयास पहुंच गए",
+    "context_limit": "संदर्भ {percent}% पर - अगले एजेंट को सौंप रहा है",
+    "restart": "एजेंट {role} पुनः प्रारंभ हो रहा है (प्रयास {current}/{max})"
+  },
+  "git": {
+    "repo_initialized": "Git रिपॉजिटरी प्रारंभ की गई",
+    "commit": "कमिट: {message}",
+    "commit_failed": "कमिट विफल: {error}",
+    "tag_created": "टैग '{tag}' बनाया और पुश किया गया",
+    "tag_created_no_push": "टैग '{tag}' बनाया गया (पुश विफल - संभवतः कोई रिमोट नहीं)",
+    "push_success": "परिवर्तन GitHub पर पुश किए गए",
+    "push_failed": "पुश विफल: {error}"
+  },
+  "phases": {
+    "planner": "योजनाकार",
+    "designer": "डिज़ाइनर",
+    "engineer": "इंजीनियर",
+    "developer": "डेवलपर",
+    "reviewer": "समीक्षक",
+    "tester": "परीक्षक",
+    "supervisor": "पर्यवेक्षक",
+    "evolver": "विकासक"
+  },
+  "status": {
+    "info": "जानकारी",
+    "success": "सफलता",
+    "warning": "चेतावनी",
+    "error": "त्रुटि",
+    "agent": "एजेंट",
+    "phase": "चरण"
+  }
+}
