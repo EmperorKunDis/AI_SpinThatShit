@@ -753,20 +753,23 @@ class ClaudeRunner:
         Returns: (success, output, context_percent)
         """
         log(t("agent.starting", role=role), "AGENT")
-        
+
         # Create log file for this run
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         log_file = self.log_dir / f"{role}_{timestamp}.log"
-        
-        # Build claude command
+
+        # Save prompt to temp file to avoid shell escaping issues
+        prompt_file = self.log_dir / f"{role}_{timestamp}_prompt.txt"
+        prompt_file.write_text(prompt, encoding='utf-8')
+
+        # Build claude command using stdin to avoid shell escaping issues
         # Using --print for non-interactive mode with full output
-        cmd = f'claude --print --dangerously-skip-permissions "{prompt}"'
-        
+        cmd = ['claude', '--print', '--dangerously-skip-permissions', prompt]
+
         try:
-            # Run with real-time output capture
+            # Run with real-time output capture using args list (safer than shell=True)
             process = subprocess.Popen(
                 cmd,
-                shell=True,
                 cwd=self.working_dir,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
