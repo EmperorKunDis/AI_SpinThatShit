@@ -9,7 +9,11 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(for:*)",
-      "Bash(do)"
+      "Bash(do)",
+      "Read(//Users/martinsvanda/PostHub/PostHubPicoVyvojZbylychFeaturesPoNaszeni/PostHubVerIV/.spinstate/**)",
+      "Bash(cat:*)",
+      "Bash(claude --version)",
+      "Bash(git -C /Users/martinsvanda/PostHub/PostHubPicoVyvojZbylychFeaturesPoNaszeni/PostHubVerIV log --oneline -20)"
     ],
     "deny": [],
     "ask": []

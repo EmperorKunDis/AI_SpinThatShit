@@ -32,7 +32,7 @@ from i18n import get_i18n, SUPPORTED_LANGUAGES
 # CONFIGURATION & CONSTANTS
 # ============================================================================
 
-VERSION = "1.0.0"
+VERSION = "2.0.0"
 CONTEXT_LIMIT_PERCENT = 50  # Start handoff at this percentage
 MAX_RETRIES = 3
 AGENT_TIMEOUT_MINUTES = 30
@@ -740,12 +740,14 @@ When done, write "EVOLVER_COMPLETE" to .spinstate/status.txt
 
 class ClaudeRunner:
     """Runs Claude Code CLI with specific prompts"""
-    
-    def __init__(self, working_dir: str, log_dir: str):
+
+    def __init__(self, working_dir: str, log_dir: str, git_monitor: Optional['GitMonitor'] = None):
         self.working_dir = working_dir
         self.log_dir = Path(log_dir)
         self.log_dir.mkdir(parents=True, exist_ok=True)
         self.context_monitor = ContextMonitor()
+        self.git_monitor = git_monitor
+        self.tool_parser = ToolStreamParser()
     
     def run_agent(self, role: str, prompt: str, timeout_minutes: int = AGENT_TIMEOUT_MINUTES) -> tuple[bool, str, int]:
         """
@@ -779,46 +781,76 @@ class ClaudeRunner:
             
             output_lines = []
             start_time = time.time()
-            
+            last_git_check = time.time()
+
             while True:
                 # Check timeout
                 if time.time() - start_time > timeout_minutes * 60:
                     process.kill()
                     log(t("agent.timeout", role=role, minutes=timeout_minutes), "ERROR")
                     return False, "TIMEOUT", 100
-                
+
+                # Check git status periodically
+                if self.git_monitor and (time.time() - last_git_check) >= 30:
+                    if self.git_monitor.should_check():
+                        git_status = self.git_monitor.get_status()
+                        self.git_monitor.record_status(git_status)
+
+                        # Print git status
+                        print(self.git_monitor.format_status(git_status))
+
+                        # Check if agent is stuck
+                        if self.git_monitor.needs_warning():
+                            log(f"⚠️  Agent may be stuck - no changes for {self.git_monitor.unchanged_count} checks", "WARNING")
+
+                        if self.git_monitor.is_stuck():
+                            log(f"🔄 Agent appears stuck - no changes for {self.git_monitor.unchanged_count} checks, considering restart", "ERROR")
+                            # Don't kill yet, let it finish current operation
+
+                    last_git_check = time.time()
+
                 line = process.stdout.readline()
                 if not line and process.poll() is not None:
                     break
-                
+
                 if line:
                     output_lines.append(line)
                     # Write to log file
                     with open(log_file, 'a', encoding='utf-8') as f:
                         f.write(line)
-                    
-                    # Print summary to terminal (shortened)
+
+                    # Parse for tool calls
+                    tool_call = self.tool_parser.parse_line(line)
+                    if tool_call:
+                        # Display tool call
+                        tool_msg = self.tool_parser.format_tool_call(role, tool_call)
+                        print(tool_msg)
+
+                    # Also show important non-tool lines
                     stripped = line.strip()
-                    if stripped and len(stripped) > 0:
+                    if stripped and len(stripped) > 0 and not tool_call:
                         # Only show significant lines
-                        if any(keyword in stripped.lower() for keyword in 
-                               ['error', 'success', 'complete', 'created', 'updated', 
-                                'commit', 'failed', 'warning', 'task', 'phase']):
+                        if any(keyword in stripped.lower() for keyword in
+                               ['error', 'fail', 'success', 'complete', 'warning']):
                             summary = stripped[:100] + "..." if len(stripped) > 100 else stripped
                             log(f"[{role}] {summary}", "AGENT", to_file=False)
             
             output = ''.join(output_lines)
             exit_code = process.returncode
-            
+
             # Estimate context usage
             context_percent = self.context_monitor.estimate_from_output(output)
             self.context_monitor.record(context_percent, role)
-            
+
             success = exit_code == 0
-            
+
+            # Show tool summary
+            tool_summary = self.tool_parser.get_summary()
+            log(f"[{role}] ✅ {tool_summary}", "INFO")
+
             log(t("agent.completed", role=role, percent=context_percent),
                 "SUCCESS" if success else "ERROR")
-            
+
             return success, output, context_percent
             
         except Exception as e:
@@ -830,30 +862,418 @@ class ClaudeRunner:
         return self.context_monitor.should_handoff(current_percent)
 
 # ============================================================================
+# TOOL STREAM PARSER
+# ============================================================================
+
+class ToolCall:
+    """Represents a single tool call from Claude"""
+    def __init__(self, tool: str, action: str, detail: str):
+        self.tool = tool  # Read, Edit, Write, Bash, etc.
+        self.action = action  # File path, command, etc.
+        self.detail = detail  # Additional context
+        self.timestamp = datetime.datetime.now()
+
+class ToolStreamParser:
+    """Parses Claude CLI output to extract tool calls"""
+
+    TOOL_PATTERNS = {
+        'read': r'Reading (?:file )?([^\n]+)',
+        'edit': r'Editing ([^:]+):(\d+)',
+        'write': r'Writing (?:to )?([^\n]+)',
+        'bash': r'Running command: (.+)',
+        'grep': r'Searching for: (.+)',
+        'glob': r'Finding files: (.+)',
+    }
+
+    TOOL_COLORS = {
+        'read': Colors.BLUE,
+        'edit': Colors.YELLOW,
+        'write': Colors.GREEN,
+        'bash': Colors.RED,
+        'grep': Colors.CYAN,
+        'glob': Colors.HEADER,
+    }
+
+    TOOL_ICONS = {
+        'read': '🔵',
+        'edit': '🟡',
+        'write': '🟢',
+        'bash': '🔴',
+        'grep': '🔍',
+        'glob': '📁',
+    }
+
+    def __init__(self):
+        self.tool_counts = {'read': 0, 'edit': 0, 'write': 0, 'bash': 0, 'grep': 0, 'glob': 0}
+        self.last_tools = []
+
+    def parse_line(self, line: str) -> Optional[ToolCall]:
+        """Parse a single line of output for tool calls"""
+        line_lower = line.lower()
+
+        for tool, pattern in self.TOOL_PATTERNS.items():
+            if tool in line_lower:
+                match = re.search(pattern, line, re.IGNORECASE)
+                if match:
+                    if tool == 'edit' and len(match.groups()) >= 2:
+                        action = match.group(1)
+                        detail = f"line {match.group(2)}"
+                    elif match.groups():
+                        action = match.group(1)
+                        detail = ""
+                    else:
+                        action = line.strip()
+                        detail = ""
+
+                    self.tool_counts[tool] += 1
+                    tool_call = ToolCall(tool, action, detail)
+                    self.last_tools.append(tool_call)
+                    return tool_call
+
+        return None
+
+    def get_summary(self) -> str:
+        """Get summary of tool usage"""
+        parts = []
+        for tool, count in self.tool_counts.items():
+            if count > 0:
+                parts.append(f"{count} {tool}s")
+        return ", ".join(parts) if parts else "no tools used"
+
+    def format_tool_call(self, agent: str, tool_call: ToolCall) -> str:
+        """Format tool call for display"""
+        icon = self.TOOL_ICONS.get(tool_call.tool, '🔹')
+        color = self.TOOL_COLORS.get(tool_call.tool, Colors.END)
+
+        # Shorten file paths
+        action = tool_call.action
+        if len(action) > 60:
+            action = "..." + action[-57:]
+
+        detail_str = f" - {tool_call.detail}" if tool_call.detail else ""
+
+        return f"{color}[{agent}] {icon} {tool_call.tool.upper()}: {action}{detail_str}{Colors.END}"
+
+# ============================================================================
+# GIT MONITOR
+# ============================================================================
+
+class GitStatus:
+    """Git repository status"""
+    def __init__(self, files_changed: int, insertions: int, deletions: int, has_changes: bool):
+        self.files_changed = files_changed
+        self.insertions = insertions
+        self.deletions = deletions
+        self.has_changes = has_changes
+        self.timestamp = datetime.datetime.now()
+
+class GitMonitor:
+    """Monitors git repository for changes"""
+
+    def __init__(self, repo_path: str, check_interval: int = 30, max_unchanged: int = 10):
+        self.repo_path = repo_path
+        self.check_interval = check_interval  # seconds
+        self.max_unchanged = max_unchanged
+        self.unchanged_count = 0
+        self.last_check = None
+        self.last_status = None
+
+    def get_status(self) -> GitStatus:
+        """Get current git status"""
+        # Get diff stats
+        code, out, _ = run_command("git diff --stat HEAD", cwd=self.repo_path)
+
+        files_changed = 0
+        insertions = 0
+        deletions = 0
+        has_changes = False
+
+        if code == 0 and out.strip():
+            # Parse output like: "3 files changed, 127 insertions(+), 42 deletions(-)"
+            match = re.search(r'(\d+) files? changed', out)
+            if match:
+                files_changed = int(match.group(1))
+                has_changes = True
+
+            match = re.search(r'(\d+) insertions?\(\+\)', out)
+            if match:
+                insertions = int(match.group(1))
+
+            match = re.search(r'(\d+) deletions?\(-\)', out)
+            if match:
+                deletions = int(match.group(1))
+
+        # Check for unstaged/untracked
+        code, out, _ = run_command("git status --porcelain", cwd=self.repo_path)
+        if code == 0 and out.strip():
+            has_changes = True
+            if not files_changed:  # Count untracked/modified files
+                files_changed = len([l for l in out.strip().split('\n') if l.strip()])
+
+        status = GitStatus(files_changed, insertions, deletions, has_changes)
+        self.last_status = status
+        self.last_check = datetime.datetime.now()
+
+        return status
+
+    def should_check(self) -> bool:
+        """Check if enough time has passed for status check"""
+        if self.last_check is None:
+            return True
+        elapsed = (datetime.datetime.now() - self.last_check).total_seconds()
+        return elapsed >= self.check_interval
+
+    def record_status(self, status: GitStatus):
+        """Record status and track unchanged count"""
+        if not status.has_changes:
+            self.unchanged_count += 1
+        else:
+            self.unchanged_count = 0
+
+    def is_stuck(self) -> bool:
+        """Check if agent appears stuck (no changes for max_unchanged checks)"""
+        return self.unchanged_count >= self.max_unchanged
+
+    def needs_warning(self) -> bool:
+        """Check if warning should be issued (halfway to stuck)"""
+        return self.unchanged_count >= (self.max_unchanged // 2) and self.unchanged_count < self.max_unchanged
+
+    def format_status(self, status: GitStatus) -> str:
+        """Format status for display"""
+        if not status.has_changes:
+            return f"{Colors.DIM}[GIT] 📊 No changes{Colors.END}"
+
+        parts = []
+        if status.files_changed:
+            parts.append(f"{status.files_changed} files")
+        if status.insertions:
+            parts.append(f"{Colors.GREEN}+{status.insertions}{Colors.END}")
+        if status.deletions:
+            parts.append(f"{Colors.RED}-{status.deletions}{Colors.END}")
+
+        return f"[GIT] 📊 {', '.join(parts)}"
+
+# ============================================================================
+# COMPLETION CHECKER
+# ============================================================================
+
+class CompletionChecker:
+    """Checks if project is 100% complete based on plan and checklist"""
+
+    def __init__(self, state_dir: Path):
+        self.state_dir = state_dir
+        self.plan_file = state_dir / "plan.md"
+        self.checklist_file = state_dir / "checklist.md"
+
+    def is_complete(self) -> tuple[bool, str]:
+        """
+        Check if project is complete
+        Returns: (is_complete, reason)
+        """
+        if not self.checklist_file.exists():
+            return False, "Checklist not created yet"
+
+        checklist_content = self.checklist_file.read_text(encoding='utf-8')
+
+        # Count checkboxes
+        total_tasks = len(re.findall(r'- \[[x ]\]', checklist_content))
+        completed_tasks = len(re.findall(r'- \[x\]', checklist_content))
+        pending_tasks = len(re.findall(r'- \[ \]', checklist_content))
+
+        if total_tasks == 0:
+            return False, "No tasks in checklist"
+
+        completion_percent = int((completed_tasks / total_tasks) * 100)
+
+        if pending_tasks == 0:
+            return True, f"All {total_tasks} tasks completed! 🎉"
+        else:
+            return False, f"{completed_tasks}/{total_tasks} complete ({completion_percent}%), {pending_tasks} remaining"
+
+    def get_next_pending_tasks(self, limit: int = 5) -> List[str]:
+        """Get list of next pending tasks"""
+        if not self.checklist_file.exists():
+            return []
+
+        checklist_content = self.checklist_file.read_text(encoding='utf-8')
+
+        # Find pending tasks
+        pending = []
+        lines = checklist_content.split('\n')
+        for line in lines:
+            if '- [ ]' in line:
+                task = line.replace('- [ ]', '').strip()
+                if task:
+                    pending.append(task)
+                if len(pending) >= limit:
+                    break
+
+        return pending
+
+# ============================================================================
+# BOSS ORCHESTRATOR
+# ============================================================================
+
+@dataclass
+class AgentDecision:
+    """Decision from Boss Orchestrator"""
+    next_agent: str
+    reason: str
+    focus: str
+    priority: str  # HIGH, MEDIUM, LOW
+
+class BossOrchestrator:
+    """AI-powered decision maker for agent orchestration"""
+
+    def __init__(self, state_dir: Path, docs_path: Path):
+        self.state_dir = state_dir
+        self.docs_path = docs_path
+        self.completion_checker = CompletionChecker(state_dir)
+
+    def _get_decision_context(self) -> str:
+        """Gather context for Boss decision"""
+        context_parts = []
+
+        # 1. Completion status
+        is_complete, completion_msg = self.completion_checker.is_complete()
+        context_parts.append(f"COMPLETION STATUS: {completion_msg}")
+
+        # 2. Pending tasks
+        pending = self.completion_checker.get_next_pending_tasks(10)
+        if pending:
+            context_parts.append(f"\nNEXT PENDING TASKS:\n" + "\n".join(f"- {t}" for t in pending))
+
+        # 3. Recent review findings
+        review_file = self.state_dir / "review.md"
+        if review_file.exists():
+            review = review_file.read_text(encoding='utf-8')[:1000]
+            context_parts.append(f"\nRECENT REVIEW FINDINGS:\n{review}")
+
+        # 4. Test results
+        test_file = self.state_dir / "test_report.md"
+        if test_file.exists():
+            tests = test_file.read_text(encoding='utf-8')[:1000]
+            context_parts.append(f"\nTEST RESULTS:\n{tests}")
+
+        # 5. Last agent activity
+        journal_file = self.state_dir / "journal.md"
+        if journal_file.exists():
+            journal = journal_file.read_text(encoding='utf-8')
+            # Get last 500 chars
+            context_parts.append(f"\nRECENT ACTIVITY:\n{journal[-500:]}")
+
+        return "\n".join(context_parts)
+
+    def decide_next_agent(self) -> AgentDecision:
+        """
+        Use Claude to decide which agent should run next
+
+        Returns decision with agent, reason, and focus area
+        """
+        context = self._get_decision_context()
+
+        prompt = f"""You are the BOSS ORCHESTRATOR for a multi-agent software development system.
+
+AVAILABLE AGENTS:
+- planner: Creates project plans and architecture
+- designer: Designs UI/UX components
+- engineer: Sets up infrastructure and DevOps
+- developer: Implements features and APIs
+- reviewer: Reviews code quality
+- tester: Runs tests and finds bugs
+- supervisor: Checks for conflicts and issues
+
+CURRENT PROJECT STATE:
+{context}
+
+RULES:
+1. Choose the MOST IMPORTANT agent to run next
+2. Consider what's incomplete and what's blocking progress
+3. Developer can run multiple times in a row if needed
+4. Reviewer should run after significant code changes
+5. Tester should run after new features
+6. Don't run designer if no UI work is needed
+
+OUTPUT FORMAT (JSON):
+{{
+  "next_agent": "developer",
+  "reason": "Phase 2 APIs are 60% complete, need to finish remaining endpoints",
+  "focus": "Complete /api/v1/social-posts/ CRUD endpoints",
+  "priority": "HIGH"
+}}
+
+Respond ONLY with valid JSON, no other text."""
+
+        # Use Claude CLI to make decision
+        try:
+            cmd = ['claude', '--print', '--dangerously-skip-permissions', prompt]
+            result = subprocess.run(
+                cmd,
+                cwd=str(self.state_dir),
+                capture_output=True,
+                text=True,
+                timeout=60
+            )
+
+            if result.returncode == 0:
+                output = result.stdout.strip()
+                # Extract JSON from output
+                json_match = re.search(r'\{[^}]+\}', output, re.DOTALL)
+                if json_match:
+                    decision_data = json.loads(json_match.group(0))
+                    return AgentDecision(**decision_data)
+        except Exception as e:
+            log(f"Boss decision failed: {e}", "WARNING")
+
+        # Fallback: intelligent default based on completion
+        is_complete, msg = self.completion_checker.is_complete()
+        if is_complete:
+            return AgentDecision(
+                next_agent="supervisor",
+                reason="Project appears complete, final check",
+                focus="Verify all requirements met",
+                priority="LOW"
+            )
+
+        # Default to developer
+        return AgentDecision(
+            next_agent="developer",
+            reason="Continuing development work",
+            focus="Complete pending tasks from checklist",
+            priority="MEDIUM"
+        )
+
+# ============================================================================
 # MAIN ORCHESTRATOR
 # ============================================================================
 
 class Orchestrator:
     """Main orchestration logic"""
-    
-    def __init__(self, docs_path: str, dev_path: str):
+
+    def __init__(self, docs_path: str, dev_path: str, autonomous_mode: bool = False):
         self.docs_path = Path(docs_path).resolve()
         self.dev_path = Path(dev_path).resolve()
         self.state_dir = self.dev_path / ".spinstate"
         self.state_dir.mkdir(parents=True, exist_ok=True)
-        
+        self.autonomous_mode = autonomous_mode
+
         # Initialize components
         self.git = GitHandler(str(self.dev_path))
         self.journal = Journal(str(self.state_dir / "journal.md"))
-        self.runner = ClaudeRunner(str(self.dev_path), str(self.state_dir / "logs"))
-        
+        self.git_monitor = GitMonitor(str(self.dev_path), check_interval=30, max_unchanged=10)
+        self.runner = ClaudeRunner(str(self.dev_path), str(self.state_dir / "logs"), git_monitor=self.git_monitor)
+
+        # Boss Orchestrator for autonomous mode
+        self.boss = BossOrchestrator(self.state_dir, self.docs_path) if autonomous_mode else None
+        self.completion_checker = CompletionChecker(self.state_dir)
+
         # Set up logging
         log.log_file = str(self.state_dir / "orchestrator.log")
-        
+
         # Load or create state
         self.state = self._load_state()
-        
-        # Agent workflow order
+
+        # Agent workflow order (used in non-autonomous mode)
         self.workflow = [
             AgentRole.PLANNER,
             AgentRole.DESIGNER,
@@ -863,10 +1283,12 @@ class Orchestrator:
             AgentRole.TESTER,
             AgentRole.SUPERVISOR,
         ]
-        
+
         log(t("orchestrator.initialized"), "SUCCESS")
         log(f"  Documentation: {self.docs_path}", "INFO")
         log(f"  Development: {self.dev_path}", "INFO")
+        if autonomous_mode:
+            log(f"  🤖 AUTONOMOUS MODE: Boss Orchestrator active", "INFO")
     
     def _load_state(self) -> ProjectState:
         """Load or create project state"""
@@ -1088,6 +1510,95 @@ class Orchestrator:
         log(f"\n{t('orchestrator.workflow_complete')}\n", "SUCCESS")
         return True
 
+    def run_autonomous_loop(self, max_iterations: int = 100):
+        """
+        Run autonomous loop with Boss Orchestrator making decisions
+        Continues until 100% complete or max iterations reached
+        """
+        if not self.autonomous_mode:
+            log("Autonomous mode not enabled! Use --autonomous flag", "ERROR")
+            return False
+
+        log(f"\n{'='*60}", "PHASE")
+        log("🤖 AUTONOMOUS ORCHESTRATION MODE ACTIVE", "PHASE")
+        log(f"{'='*60}\n", "PHASE")
+
+        iteration = 0
+        consecutive_failures = 0
+        max_failures = 3
+
+        while iteration < max_iterations:
+            iteration += 1
+
+            # Check completion
+            is_complete, completion_msg = self.completion_checker.is_complete()
+            log(f"📊 Status: {completion_msg}", "INFO")
+
+            if is_complete:
+                log(f"\n{'='*60}", "SUCCESS")
+                log("✅ PROJECT 100% COMPLETE!", "SUCCESS")
+                log(f"{'='*60}\n", "SUCCESS")
+
+                # Final supervision
+                log("\n🔍 Running final supervision...\n", "PHASE")
+                self.run_agent(AgentRole.SUPERVISOR)
+
+                # Final tag
+                self.git.tag(f"complete-{datetime.datetime.now().strftime('%Y%m%d%H%M')}", "Autonomous completion")
+                self.git.push()
+
+                return True
+
+            # Get Boss decision
+            log(f"\n[Iteration {iteration}/{max_iterations}]", "PHASE")
+            log("🧠 Boss Orchestrator deciding next move...", "PHASE")
+
+            decision = self.boss.decide_next_agent()
+
+            # Display decision
+            priority_icon = {"HIGH": "🔴", "MEDIUM": "🟡", "LOW": "🟢"}.get(decision.priority, "🔵")
+            log(f"{priority_icon} DECISION: {decision.next_agent.upper()}", "PHASE")
+            log(f"   Reason: {decision.reason}", "INFO")
+            log(f"   Focus: {decision.focus}", "INFO")
+
+            # Map decision to AgentRole
+            agent_map = {
+                "planner": AgentRole.PLANNER,
+                "designer": AgentRole.DESIGNER,
+                "engineer": AgentRole.ENGINEER,
+                "developer": AgentRole.DEVELOPER,
+                "reviewer": AgentRole.REVIEWER,
+                "tester": AgentRole.TESTER,
+                "supervisor": AgentRole.SUPERVISOR,
+            }
+
+            agent_role = agent_map.get(decision.next_agent.lower())
+            if not agent_role:
+                log(f"Unknown agent: {decision.next_agent}", "WARNING")
+                agent_role = AgentRole.DEVELOPER  # Fallback
+
+            # Run the selected agent
+            success = self.run_agent(agent_role)
+
+            if not success:
+                consecutive_failures += 1
+                log(f"⚠️  Agent failed ({consecutive_failures}/{max_failures} consecutive failures)", "WARNING")
+
+                if consecutive_failures >= max_failures:
+                    log(f"❌ Too many consecutive failures, stopping autonomous loop", "ERROR")
+                    return False
+            else:
+                consecutive_failures = 0  # Reset on success
+
+            # Brief pause between iterations
+            time.sleep(2)
+
+        log(f"\n⚠️  Reached maximum iterations ({max_iterations}) without full completion", "WARNING")
+        is_complete, completion_msg = self.completion_checker.is_complete()
+        log(f"Final status: {completion_msg}", "INFO")
+
+        return False
+
 # ============================================================================
 # INTERACTIVE SETUP
 # ============================================================================
@@ -1191,6 +1702,7 @@ def main():
     parser.add_argument('--docs', help='Path to documentation folder')
     parser.add_argument('--dev', help='Path to development folder')
     parser.add_argument('--resume', action='store_true', help='Resume from last state')
+    parser.add_argument('--autonomous', action='store_true', help='Enable autonomous mode with Boss Orchestrator')
     parser.add_argument('--lang', help='Language code (e.g., en, cs, es)')
     parser.add_argument('--version', action='version', version=f'SpinThatShit v{VERSION}')
 
@@ -1229,8 +1741,14 @@ def main():
 
     # Create and run orchestrator
     try:
-        orchestrator = Orchestrator(docs_path, dev_path)
-        orchestrator.run_full_workflow()
+        orchestrator = Orchestrator(docs_path, dev_path, autonomous_mode=args.autonomous)
+
+        if args.autonomous:
+            # Run autonomous loop
+            orchestrator.run_autonomous_loop(max_iterations=100)
+        else:
+            # Run traditional workflow
+            orchestrator.run_full_workflow()
     except Exception as e:
         log(t("orchestrator.critical_error", error=str(e)), "ERROR")
         raise
