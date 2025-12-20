@@ -1,0 +1,21 @@
+{
+  "version": "3.0.0",
+  "last_updated": "2025-12-20",
+  "rules": [
+    {
+      "id": "circuit_breaker",
+      "version": "2.1.0",
+      "description": "Stop after 3 consecutive rapid failures"
+    },
+    {
+      "id": "smart_skip",
+      "version": "3.0.0",
+      "description": "Skip agents with no pending tasks"
+    },
+    {
+      "id": "concrete_tasks",
+      "version": "3.0.0",
+      "description": "Inject specific tasks into prompts"
+    }
+  ]
+}

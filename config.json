@@ -1,0 +1,34 @@
+{
+  "version": "3.0.0",
+  "name": "SpinThatShit",
+  "description": "Self-Evolving AI Development Orchestrator",
+  
+  "workflow": {
+    "default_phases": ["planner", "designer", "engineer", "developer", "reviewer", "tester", "supervisor"],
+    "final_phases": ["supervisor", "evolver"]
+  },
+  
+  "agents": {
+    "timeout_minutes": 30,
+    "max_retries": 3,
+    "context_limit_percent": 50
+  },
+  
+  "efficiency": {
+    "skip_empty_agents": true,
+    "inject_concrete_tasks": true,
+    "track_metrics": true
+  },
+  
+  "evolution": {
+    "enabled": true,
+    "auto_sync": true,
+    "sync_interval_hours": 24,
+    "source_repo": "https://github.com/EmperorKunDis/SpinThatShit.git"
+  },
+  
+  "i18n": {
+    "default_language": "en",
+    "supported_languages": ["en", "cs", "de", "es", "fr"]
+  }
+}

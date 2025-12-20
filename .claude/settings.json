@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod:*)",
+      "Bash(git:*)",
+      "Bash(python:*)",
+      "Bash(cat:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)"
+    ],
+    "deny": [
+      "Bash(sudo:*)",
+      "Bash(rm -rf /:*)"
+    ]
+  },
+  "behavior": {
+    "auto_commit": true,
+    "commit_message_style": "conventional"
+  },
+  "project": {
+    "type": "ai-orchestrator",
+    "main_file": "spin.py"
+  }
+}
