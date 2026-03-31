@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+env/
+venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project state (per-project)
+.spinstate/
+
+# Logs
+*.log
+
+# Secrets
+.env
+.env.local
+*.pem
+*.key
+
+# Build
+dist/
+build/
+
+# Local config
+config.local.json
