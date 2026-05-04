@@ -1,6 +1,6 @@
 # 📋 Quality Standards
 
-## 13-Point Checklist
+## 14-Point Checklist (v3.2.0)
 
 ### FORBIDDEN (Instant FAIL)
 1. Mock data
@@ -18,3 +18,7 @@
 11. Security checks (tenant isolation)
 12. Performance (no N+1)
 13. Tests
+14. **Test Coherence** (v3.2.0 - Rule 5)
+    - Modified file's corresponding tests MUST pass
+    - If `auth.service.ts` changed, `auth.service.spec.ts` must pass
+    - If `services.py` changed, `test_services.py` must pass
